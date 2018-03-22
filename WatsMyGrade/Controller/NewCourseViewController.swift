@@ -59,6 +59,16 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.distribution = .equalSpacing
+        sv.alignment = .center
+        sv.spacing = 15
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,21 +88,27 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = UIColor(hexString: "#F0F0F0")
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
+        self.view.addSubview(self.stackView)
+        self.stackView.addArrangedSubview(self.codeField)
+        self.stackView.addArrangedSubview(self.nameField)
+        self.stackView.addArrangedSubview(self.creditsField)
+        
+        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
+        self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        
         self.codeField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.codeField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.codeField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150.0).isActive = true
         
         self.nameField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nameField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.nameField.topAnchor.constraint(equalTo: self.codeField.bottomAnchor, constant: 15.0).isActive = true
         
         self.creditsField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.creditsField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.creditsField.topAnchor.constraint(equalTo: self.nameField.bottomAnchor, constant: 15.0).isActive = true
         
         self.submitButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 100).isActive = true
         self.submitButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -100).isActive = true
-        self.submitButton.topAnchor.constraint(equalTo: self.creditsField.bottomAnchor, constant: 15.0).isActive = true
+        self.submitButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 15.0).isActive = true
         self.submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         self.submitButton.setTitle("Submit", for: .normal)
         self.submitButton.setTitleColor(UIColor.white, for: .normal)
