@@ -16,6 +16,7 @@ protocol CourseServiceDelegate: class {
 class CourseService {
     
     static var shared = CourseService()
+    weak var delegate: CourseServiceDelegate?
     
     var courses = [Course]()
     
@@ -25,16 +26,18 @@ class CourseService {
         do {
             let courses = try DataController.context.fetch(fetchRequest)
             self.courses = courses
+            self.delegate?.coursesLoaded()
         } catch let err {
             print(err)
         }
     }
     
-    func createCourse(code: String, name: String, grade: Double) {
+    func createCourse(code: String, name: String, credits: Double, grade: Double) {
         let course = Course(context: DataController.context)
         course.code = code
         course.name = name
         course.grade = grade
+        course.credits = credits
         DataController.saveContext()
         self.courses.append(course)
     }

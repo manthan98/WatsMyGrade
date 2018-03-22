@@ -21,10 +21,19 @@ class MainViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.register(CourseCell.self, forCellReuseIdentifier: "CourseCell")
+        
+        CourseService.shared.delegate = self
+        CourseService.shared.getCourses()
         
         self.view.addSubview(tableView)
         
         setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        CourseService.shared.getCourses()
+        self.tableView.reloadData()
     }
     
     private func setup() {
@@ -50,6 +59,14 @@ class MainViewController: UIViewController {
 
 }
 
+extension MainViewController: CourseServiceDelegate {
+    func coursesLoaded() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -60,15 +77,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO:
-        return 1
+        return CourseService.shared.courses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO:
-        let cell: CourseCell = CourseCell.init(style: .default, reuseIdentifier: "CourseCell")
-        cell.configureCell(code: "BME 121", grade: "91")
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath) as? CourseCell {
+            cell.configureCell(course: CourseService.shared.courses[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 

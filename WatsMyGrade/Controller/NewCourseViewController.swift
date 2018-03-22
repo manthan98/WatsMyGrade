@@ -118,7 +118,10 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func submit() {
         // TODO:
-        self.navigationController?.popViewController(animated: true)
+        if let code = codeField.text, let name = nameField.text, let credits = creditsField.text {
+            CourseService.shared.createCourse(code: code, name: name, credits: Double(credits)!, grade: 0)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
 }
