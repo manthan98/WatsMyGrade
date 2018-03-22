@@ -10,23 +10,19 @@ import UIKit
 
 class CourseCell: UITableViewCell {
     
-    let codeLabel: UILabel = {
+    var codeLabel: UILabel = {
         let cl = UILabel()
-        cl.translatesAutoresizingMaskIntoConstraints = false
         cl.textAlignment = .left
-        cl.text = "BME 121"
         return cl
     }()
     
-    let gradeLabel: UILabel = {
+    var gradeLabel: UILabel = {
         let gl = UILabel()
-        gl.translatesAutoresizingMaskIntoConstraints = false
         gl.textAlignment = .right
-        gl.text = "91 %"
         return gl
     }()
     
-    let nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         let nl = UILabel()
         nl.translatesAutoresizingMaskIntoConstraints = false
         nl.textAlignment = .left
@@ -45,16 +41,6 @@ class CourseCell: UITableViewCell {
     }
     
     private func setup() {
-        NSLayoutConstraint.activate([
-                self.codeLabel.widthAnchor.constraint(equalToConstant: self.codeLabel.intrinsicContentSize.width),
-                self.codeLabel.heightAnchor.constraint(equalToConstant: self.codeLabel.intrinsicContentSize.height)
-            ])
-        
-        NSLayoutConstraint.activate([
-                self.gradeLabel.widthAnchor.constraint(equalToConstant: self.gradeLabel.intrinsicContentSize.width),
-                self.gradeLabel.heightAnchor.constraint(equalToConstant: self.gradeLabel.intrinsicContentSize.height),
-            ])
-        
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .equalCentering
@@ -76,6 +62,11 @@ class CourseCell: UITableViewCell {
                 self.nameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
                 self.nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
             ])
+    }
+    
+    public func configureCell(code: String, grade: String) {
+        self.codeLabel.text = code
+        self.gradeLabel.text = "\(grade) %"
     }
 
 }

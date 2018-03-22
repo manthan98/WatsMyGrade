@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,7 +67,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO:
         let cell: CourseCell = CourseCell.init(style: .default, reuseIdentifier: "CourseCell")
-        cell.codeLabel.text = "WTF"
+        cell.configureCell(code: "BME 121", grade: "91")
         return cell
     }
 }
