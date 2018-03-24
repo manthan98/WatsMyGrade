@@ -1,5 +1,5 @@
 //
-//  Course+CoreDataClass.swift
+//  Grade+CoreDataClass.swift
 //  WatsMyGrade
 //
 //  Created by Manthan Shah on 2018-03-23.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Course)
-public class Course: NSManagedObject {
+@objc(Grade)
+public class Grade: NSManagedObject {
 
 }

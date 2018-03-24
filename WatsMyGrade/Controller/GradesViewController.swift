@@ -10,6 +10,8 @@ import UIKit
 
 class GradesViewController: UIViewController {
     
+    var course = Course()
+    
     let upperContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,14 +59,26 @@ class GradesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.courseLabel.text = "Digital Computation"
-        self.gradeLabel.text = "91.0 %"
+        GradeService.shared.getGrades(course: self.course)
         
         setup()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print(GradeService.shared.grades.count)
+    }
+    
     private func setup() {
+        self.view.backgroundColor = UIColor(hexString: "#F8F8F8")
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.title = course.code
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        
+        self.courseLabel.text = self.course.name
+        self.gradeLabel.text = "\(self.course.grade) %"
         
         self.view.addSubview(self.upperContainerView)
         self.upperContainerView.addSubview(self.stackView)
@@ -95,6 +109,12 @@ class GradesViewController: UIViewController {
         self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+    
+    @objc private func add(_ sender: UIBarButtonItem) {
+        let newGradeViewController = NewGradeViewController(nibName: nil, bundle: nil)
+        newGradeViewController.course = self.course
+        self.navigationController?.pushViewController(newGradeViewController, animated: true)
     }
 
 }

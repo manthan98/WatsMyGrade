@@ -82,6 +82,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gradesViewController = GradesViewController(nibName: nil, bundle: nil)
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        gradesViewController.course = CourseService.shared.courses[indexPath.row]
         self.navigationController?.pushViewController(gradesViewController, animated: true)
     }
     

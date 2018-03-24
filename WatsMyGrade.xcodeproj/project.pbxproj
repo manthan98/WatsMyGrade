@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8221DCA5206330F70017C1BA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA4206330F70017C1BA /* DataController.swift */; };
 		8221DCA7206332350017C1BA /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA6206332350017C1BA /* CourseService.swift */; };
-		8221DCAA206332800017C1BA /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA8206332800017C1BA /* Course+CoreDataClass.swift */; };
-		8221DCAB206332800017C1BA /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA9206332800017C1BA /* Course+CoreDataProperties.swift */; };
 		8221DCAD20633BD40017C1BA /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCAC20633BD40017C1BA /* GradesViewController.swift */; };
 		82642532205EFB8900A8A130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642531205EFB8900A8A130 /* AppDelegate.swift */; };
 		82642534205EFB8900A8A130 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642533205EFB8900A8A130 /* MainViewController.swift */; };
@@ -23,6 +21,13 @@
 		82642563205EFEFA00A8A130 /* NewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642562205EFEFA00A8A130 /* NewCourseViewController.swift */; };
 		82642569205F132C00A8A130 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642568205F132C00A8A130 /* UIColor.swift */; };
 		8264256B205F148F00A8A130 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264256A205F148F00A8A130 /* CourseCell.swift */; };
+		82F053082065F5CA00263DB4 /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053042065F5CA00263DB4 /* Course+CoreDataClass.swift */; };
+		82F053092065F5CA00263DB4 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053052065F5CA00263DB4 /* Course+CoreDataProperties.swift */; };
+		82F0530A2065F5CA00263DB4 /* Grade+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053062065F5CA00263DB4 /* Grade+CoreDataClass.swift */; };
+		82F0530B2065F5CA00263DB4 /* Grade+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053072065F5CA00263DB4 /* Grade+CoreDataProperties.swift */; };
+		82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */; };
+		82F0530F2065F8BA00263DB4 /* GradeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530E2065F8BA00263DB4 /* GradeService.swift */; };
+		82F0531120668FD200263DB4 /* GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0531020668FD200263DB4 /* GradeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +50,6 @@
 /* Begin PBXFileReference section */
 		8221DCA4206330F70017C1BA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8221DCA6206332350017C1BA /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
-		8221DCA8206332800017C1BA /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8221DCA9206332800017C1BA /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8221DCAC20633BD40017C1BA /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
 		8264252E205EFB8800A8A130 /* WatsMyGrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatsMyGrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82642531205EFB8900A8A130 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +68,13 @@
 		82642562205EFEFA00A8A130 /* NewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCourseViewController.swift; sourceTree = "<group>"; };
 		82642568205F132C00A8A130 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8264256A205F148F00A8A130 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
+		82F053042065F5CA00263DB4 /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
+		82F053052065F5CA00263DB4 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		82F053062065F5CA00263DB4 /* Grade+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+CoreDataClass.swift"; sourceTree = "<group>"; };
+		82F053072065F5CA00263DB4 /* Grade+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGradeViewController.swift; sourceTree = "<group>"; };
+		82F0530E2065F8BA00263DB4 /* GradeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeService.swift; sourceTree = "<group>"; };
+		82F0531020668FD200263DB4 /* GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,7 @@
 			children = (
 				8221DCA4206330F70017C1BA /* DataController.swift */,
 				8221DCA6206332350017C1BA /* CourseService.swift */,
+				82F0530E2065F8BA00263DB4 /* GradeService.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 				82642533205EFB8900A8A130 /* MainViewController.swift */,
 				82642562205EFEFA00A8A130 /* NewCourseViewController.swift */,
 				8221DCAC20633BD40017C1BA /* GradesViewController.swift */,
+				82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -171,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				8264256A205F148F00A8A130 /* CourseCell.swift */,
+				82F0531020668FD200263DB4 /* GradeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,8 +191,10 @@
 		82642566205F130700A8A130 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8221DCA8206332800017C1BA /* Course+CoreDataClass.swift */,
-				8221DCA9206332800017C1BA /* Course+CoreDataProperties.swift */,
+				82F053042065F5CA00263DB4 /* Course+CoreDataClass.swift */,
+				82F053052065F5CA00263DB4 /* Course+CoreDataProperties.swift */,
+				82F053062065F5CA00263DB4 /* Grade+CoreDataClass.swift */,
+				82F053072065F5CA00263DB4 /* Grade+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,17 +341,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8221DCAA206332800017C1BA /* Course+CoreDataClass.swift in Sources */,
 				8221DCA7206332350017C1BA /* CourseService.swift in Sources */,
+				82F0530F2065F8BA00263DB4 /* GradeService.swift in Sources */,
 				8221DCA5206330F70017C1BA /* DataController.swift in Sources */,
 				8264256B205F148F00A8A130 /* CourseCell.swift in Sources */,
+				82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */,
 				82642534205EFB8900A8A130 /* MainViewController.swift in Sources */,
 				8264253A205EFB8900A8A130 /* WatsMyGrade.xcdatamodeld in Sources */,
-				8221DCAB206332800017C1BA /* Course+CoreDataProperties.swift in Sources */,
+				82F053082065F5CA00263DB4 /* Course+CoreDataClass.swift in Sources */,
+				82F0530A2065F5CA00263DB4 /* Grade+CoreDataClass.swift in Sources */,
 				82642563205EFEFA00A8A130 /* NewCourseViewController.swift in Sources */,
 				82642532205EFB8900A8A130 /* AppDelegate.swift in Sources */,
+				82F0530B2065F5CA00263DB4 /* Grade+CoreDataProperties.swift in Sources */,
 				82642569205F132C00A8A130 /* UIColor.swift in Sources */,
+				82F0531120668FD200263DB4 /* GradeCell.swift in Sources */,
 				8221DCAD20633BD40017C1BA /* GradesViewController.swift in Sources */,
+				82F053092065F5CA00263DB4 /* Course+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
