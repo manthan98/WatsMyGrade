@@ -28,6 +28,7 @@
 		82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */; };
 		82F0530F2065F8BA00263DB4 /* GradeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530E2065F8BA00263DB4 /* GradeService.swift */; };
 		82F0531120668FD200263DB4 /* GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0531020668FD200263DB4 /* GradeCell.swift */; };
+		82F053132066963200263DB4 /* EditGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053122066963200263DB4 /* EditGradeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGradeViewController.swift; sourceTree = "<group>"; };
 		82F0530E2065F8BA00263DB4 /* GradeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeService.swift; sourceTree = "<group>"; };
 		82F0531020668FD200263DB4 /* GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCell.swift; sourceTree = "<group>"; };
+		82F053122066963200263DB4 /* EditGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGradeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				82642562205EFEFA00A8A130 /* NewCourseViewController.swift */,
 				8221DCAC20633BD40017C1BA /* GradesViewController.swift */,
 				82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */,
+				82F053122066963200263DB4 /* EditGradeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				82F0530A2065F5CA00263DB4 /* Grade+CoreDataClass.swift in Sources */,
 				82642563205EFEFA00A8A130 /* NewCourseViewController.swift in Sources */,
 				82642532205EFB8900A8A130 /* AppDelegate.swift in Sources */,
+				82F053132066963200263DB4 /* EditGradeViewController.swift in Sources */,
 				82F0530B2065F5CA00263DB4 /* Grade+CoreDataProperties.swift in Sources */,
 				82642569205F132C00A8A130 /* UIColor.swift in Sources */,
 				82F0531120668FD200263DB4 /* GradeCell.swift in Sources */,

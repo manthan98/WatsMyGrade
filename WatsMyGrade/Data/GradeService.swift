@@ -9,26 +9,18 @@
 import Foundation
 import CoreData
 
+protocol GradeServiceDelegate: class {
+    func gradesLoaded()
+}
+
 class GradeService {
     
     static var shared = GradeService()
+    weak var delegate: GradeServiceDelegate?
     
-    var grades = [Grade]()
+    public var grades = [Grade]()
     
-    func getGrades(course: Course) {
-        let fetchRequest: NSFetchRequest<Grade> = Grade.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "course == %@", course)
-        
-        do {
-            let grades = try DataController.context.fetch(fetchRequest)
-            self.grades = grades
-            print("SUCCESS")
-        } catch let err {
-            print(err)
-        }
-    }
-    
-    func createGrade(name: String, mark: Double, weight: Double, course: Course) {
+    public func createGrade(name: String, mark: Double, weight: Double, course: Course) {
         let grade = Grade(context: DataController.context)
         grade.name = name
         grade.grade = mark
@@ -36,6 +28,30 @@ class GradeService {
         grade.course = course
         DataController.saveContext()
         self.grades.append(grade)
+    }
+    
+    public func getGrades(course: Course) {
+        let fetchRequest: NSFetchRequest<Grade> = Grade.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "course == %@", course)
+        
+        do {
+            let grades = try DataController.context.fetch(fetchRequest)
+            self.grades = grades
+            self.delegate?.gradesLoaded()
+            print("SUCCESS")
+        } catch let err {
+            print(err)
+        }
+    }
+    
+    public func updateGrade(mark: Double, name: String, weight: Double, grade: Grade) {
+        grade.setValue(mark, forKey: "grade")
+        grade.setValue(name, forKey: "name")
+        grade.setValue(weight, forKey: "weight")
+        
+        DataController.saveContext()
+        
+        print("SUCCESS")
     }
     
 }

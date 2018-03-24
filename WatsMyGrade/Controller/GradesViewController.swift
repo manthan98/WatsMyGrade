@@ -46,6 +46,7 @@ class GradesViewController: UIViewController {
         let items = ["Grades", "Tasks"]
         let sc = UISegmentedControl(items: items)
         sc.selectedSegmentIndex = 0
+        sc.tintColor = UIColor(hexString: "#79b9e1")
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
@@ -63,6 +64,7 @@ class GradesViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.register(GradeCell.self, forCellReuseIdentifier: "GradeCell")
         
+        GradeService.shared.delegate = self
         GradeService.shared.getGrades(course: self.course)
         
         setup()
@@ -71,7 +73,7 @@ class GradesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(GradeService.shared.grades.count)
+        GradeService.shared.getGrades(course: self.course)
     }
     
     private func setup() {
@@ -123,6 +125,14 @@ class GradesViewController: UIViewController {
 
 }
 
+extension GradesViewController: GradeServiceDelegate {
+    func gradesLoaded() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
 extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
@@ -134,6 +144,13 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return GradeService.shared.grades.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let editGradeViewController = EditGradeViewController(nibName: nil, bundle: nil)
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        editGradeViewController.grade = GradeService.shared.grades[indexPath.row]
+        self.navigationController?.pushViewController(editGradeViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
