@@ -80,6 +80,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return CourseService.shared.courses.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let gradesViewController = GradesViewController(nibName: nil, bundle: nil)
+        self.navigationController?.pushViewController(gradesViewController, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath) as? CourseCell {
             cell.configureCell(course: CourseService.shared.courses[indexPath.row])
