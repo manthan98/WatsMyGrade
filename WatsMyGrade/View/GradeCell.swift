@@ -38,6 +38,7 @@ class GradeCell: UITableViewCell {
         s1.distribution = .equalCentering
         s1.alignment = .center
         s1.spacing = 10
+        s1.translatesAutoresizingMaskIntoConstraints = false
         return s1
     }()
 

@@ -59,6 +59,10 @@ class GradesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(GradeCell.self, forCellReuseIdentifier: "GradeCell")
+        
         GradeService.shared.getGrades(course: self.course)
         
         setup()
@@ -117,4 +121,26 @@ class GradesViewController: UIViewController {
         self.navigationController?.pushViewController(newGradeViewController, animated: true)
     }
 
+}
+
+extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return GradeService.shared.grades.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "GradeCell", for: indexPath) as? GradeCell {
+            cell.configureCell(grade: GradeService.shared.grades[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
+    }
 }
