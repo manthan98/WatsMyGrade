@@ -32,6 +32,7 @@
 		82F0531E20671D9F00263DB4 /* Grade+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0531820671D9F00263DB4 /* Grade+CoreDataClass.swift */; };
 		82F0531F20671D9F00263DB4 /* Grade+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0531920671D9F00263DB4 /* Grade+CoreDataProperties.swift */; };
 		82F0532120671DBF00263DB4 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0532020671DBF00263DB4 /* TaskService.swift */; };
+		82F053232067276500263DB4 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053222067276500263DB4 /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		82F0531820671D9F00263DB4 /* Grade+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+CoreDataClass.swift"; sourceTree = "<group>"; };
 		82F0531920671D9F00263DB4 /* Grade+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		82F0532020671DBF00263DB4 /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		82F053222067276500263DB4 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,9 +183,10 @@
 			isa = PBXGroup;
 			children = (
 				82642533205EFB8900A8A130 /* MainViewController.swift */,
-				82642562205EFEFA00A8A130 /* NewCourseViewController.swift */,
 				8221DCAC20633BD40017C1BA /* GradesViewController.swift */,
+				82642562205EFEFA00A8A130 /* NewCourseViewController.swift */,
 				82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */,
+				82F053222067276500263DB4 /* NewTaskViewController.swift */,
 				82F053122066963200263DB4 /* EditGradeViewController.swift */,
 			);
 			path = Controller;
@@ -354,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82F0532120671DBF00263DB4 /* TaskService.swift in Sources */,
+				82F053232067276500263DB4 /* NewTaskViewController.swift in Sources */,
 				82F0531A20671D9F00263DB4 /* Course+CoreDataClass.swift in Sources */,
 				82F0531B20671D9F00263DB4 /* Course+CoreDataProperties.swift in Sources */,
 				8221DCA7206332350017C1BA /* CourseService.swift in Sources */,

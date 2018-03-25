@@ -120,9 +120,18 @@ class GradesViewController: UIViewController {
     }
     
     @objc private func add(_ sender: UIBarButtonItem) {
-        let newGradeViewController = NewGradeViewController(nibName: nil, bundle: nil)
-        newGradeViewController.course = self.course
-        self.navigationController?.pushViewController(newGradeViewController, animated: true)
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            let newGradeViewController = NewGradeViewController(nibName: nil, bundle: nil)
+            newGradeViewController.course = self.course
+            self.navigationController?.pushViewController(newGradeViewController, animated: true)
+        case 1:
+            let newTaskViewController = NewTaskViewController(nibName: nil, bundle: nil)
+            newTaskViewController.course = self.course
+            self.navigationController?.pushViewController(newTaskViewController, animated: true)
+        default:
+            break
+        }
     }
     
     @objc private func segmentSwap(_ sender: UISegmentedControl) {
