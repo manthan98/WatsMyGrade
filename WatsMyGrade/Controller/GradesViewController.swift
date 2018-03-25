@@ -67,6 +67,8 @@ class GradesViewController: UIViewController {
         GradeService.shared.delegate = self
         GradeService.shared.getGrades(course: self.course)
         
+        TaskService.shared.getTasks(course: self.course)
+        
         setup()
     }
     
@@ -74,6 +76,7 @@ class GradesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         GradeService.shared.getGrades(course: self.course)
+        TaskService.shared.getTasks(course: self.course)
     }
     
     private func setup() {
@@ -119,6 +122,19 @@ class GradesViewController: UIViewController {
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
+    private func getCourseGrade() {
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            let grade = Double(GradeHelper.shared.getFinalMark(grades: GradeService.shared.grades, course: self.course)).rounded(toPlaces: 2)
+            self.gradeLabel.text = "\(grade) %"
+            CourseService.shared.updateCourse(code: self.course.code!, name: self.course.name!, credits: self.course.credits, grade: grade, course: self.course)
+        case 1:
+            fallthrough
+        default:
+            break
+        }
+    }
+    
     @objc private func add(_ sender: UIBarButtonItem) {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
@@ -144,6 +160,9 @@ extension GradesViewController: GradeServiceDelegate {
     func gradesLoaded() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            if (!self.tableView.visibleCells.isEmpty) {
+                self.getCourseGrade()
+            }
         }
     }
 }
@@ -169,10 +188,20 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editGradeViewController = EditGradeViewController(nibName: nil, bundle: nil)
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        editGradeViewController.grade = GradeService.shared.grades[indexPath.row]
-        self.navigationController?.pushViewController(editGradeViewController, animated: true)
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            let editGradeViewController = EditGradeViewController(nibName: nil, bundle: nil)
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            editGradeViewController.grade = GradeService.shared.grades[indexPath.row]
+            self.navigationController?.pushViewController(editGradeViewController, animated: true)
+        case 1:
+            let editTaskViewController = EditTaskViewController(nibName: nil, bundle: nil)
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            editTaskViewController.task = TaskService.shared.tasks[indexPath.row]
+            self.navigationController?.pushViewController(editTaskViewController, animated: true)
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

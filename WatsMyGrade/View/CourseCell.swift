@@ -69,7 +69,7 @@ class CourseCell: UITableViewCell {
     public func configureCell(course: Course) {
         self.codeLabel.text = course.code
         self.nameLabel.text = course.name
-        self.gradeLabel.text = "\(course.grade)"
+        self.gradeLabel.text = "\(course.grade) %"
     }
 
 }

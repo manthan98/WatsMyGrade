@@ -37,4 +37,13 @@ class TaskService {
         }
     }
     
+    public func updateTask(name: String, priority: String, date: String, task: Task) {
+        task.name = name
+        task.priority = priority
+        task.date = date
+        
+        DataController.saveContext()
+        print("UPDATE TASK SUCCESS")
+    }
+    
 }

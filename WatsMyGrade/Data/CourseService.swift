@@ -43,37 +43,13 @@ class CourseService {
     }
     
     func updateCourse(code: String, name: String, credits: Double, grade: Double, course: Course) {
-        let fetchRequest: NSFetchRequest<Course> = Course.fetchRequest()
+        course.code = code
+        course.name = name
+        course.credits = credits
+        course.grade = grade
         
-        guard let code = course.code else { return }
-        let coursePredicate = NSPredicate(format: "code == %@", code)
-        
-        let creditsPredicate = NSPredicate(format: "credits == %@", course.credits)
-        let gradePredicate = NSPredicate(format: "grade == %@", course.grade)
-        
-        guard let name = course.name else { return }
-        let namePredicate = NSPredicate(format: "name == %@", name)
-        
-        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [coursePredicate, creditsPredicate, gradePredicate, namePredicate])
-        fetchRequest.predicate = andPredicate
-        
-        do {
-            let course = try DataController.context.fetch(fetchRequest)
-            let courseToUpdate = course[0]
-            courseToUpdate.setValue(code, forKey: "code")
-            courseToUpdate.setValue(name, forKey: "name")
-            courseToUpdate.setValue(credits, forKey: "credits")
-            courseToUpdate.setValue(grade, forKey: "grade")
-            
-            do {
-                try DataController.context.save()
-                print("SUCCESS!!!!")
-            } catch let err {
-                print(err)
-            }
-        } catch let err {
-            print(err)
-        }
+        DataController.saveContext()
+        print("COURSE UPDATE SUCCESS")
     }
     
 }

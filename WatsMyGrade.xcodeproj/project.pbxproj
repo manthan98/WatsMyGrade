@@ -33,6 +33,9 @@
 		82F0531F20671D9F00263DB4 /* Grade+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0531920671D9F00263DB4 /* Grade+CoreDataProperties.swift */; };
 		82F0532120671DBF00263DB4 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0532020671DBF00263DB4 /* TaskService.swift */; };
 		82F053232067276500263DB4 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053222067276500263DB4 /* NewTaskViewController.swift */; };
+		82F0532520672B6800263DB4 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0532420672B6800263DB4 /* EditTaskViewController.swift */; };
+		82F053272067350E00263DB4 /* GradeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053262067350E00263DB4 /* GradeHelper.swift */; };
+		82F053292067365D00263DB4 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053282067365D00263DB4 /* Double.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,9 @@
 		82F0531920671D9F00263DB4 /* Grade+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		82F0532020671DBF00263DB4 /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
 		82F053222067276500263DB4 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		82F0532420672B6800263DB4 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		82F053262067350E00263DB4 /* GradeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeHelper.swift; sourceTree = "<group>"; };
+		82F053282067365D00263DB4 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 				8221DCA6206332350017C1BA /* CourseService.swift */,
 				82F0530E2065F8BA00263DB4 /* GradeService.swift */,
 				82F0532020671DBF00263DB4 /* TaskService.swift */,
+				82F053262067350E00263DB4 /* GradeHelper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -183,11 +190,12 @@
 			isa = PBXGroup;
 			children = (
 				82642533205EFB8900A8A130 /* MainViewController.swift */,
-				8221DCAC20633BD40017C1BA /* GradesViewController.swift */,
 				82642562205EFEFA00A8A130 /* NewCourseViewController.swift */,
+				8221DCAC20633BD40017C1BA /* GradesViewController.swift */,
 				82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */,
-				82F053222067276500263DB4 /* NewTaskViewController.swift */,
 				82F053122066963200263DB4 /* EditGradeViewController.swift */,
+				82F053222067276500263DB4 /* NewTaskViewController.swift */,
+				82F0532420672B6800263DB4 /* EditTaskViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -218,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				82642568205F132C00A8A130 /* UIColor.swift */,
+				82F053282067365D00263DB4 /* Double.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -366,7 +375,9 @@
 				8221DCA5206330F70017C1BA /* DataController.swift in Sources */,
 				8264256B205F148F00A8A130 /* CourseCell.swift in Sources */,
 				82F0531E20671D9F00263DB4 /* Grade+CoreDataClass.swift in Sources */,
+				82F053292067365D00263DB4 /* Double.swift in Sources */,
 				82F0531C20671D9F00263DB4 /* Task+CoreDataClass.swift in Sources */,
+				82F0532520672B6800263DB4 /* EditTaskViewController.swift in Sources */,
 				82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */,
 				82642534205EFB8900A8A130 /* MainViewController.swift in Sources */,
 				8264253A205EFB8900A8A130 /* WatsMyGrade.xcdatamodeld in Sources */,
@@ -376,6 +387,7 @@
 				82642569205F132C00A8A130 /* UIColor.swift in Sources */,
 				82F0531120668FD200263DB4 /* GradeCell.swift in Sources */,
 				8221DCAD20633BD40017C1BA /* GradesViewController.swift in Sources */,
+				82F053272067350E00263DB4 /* GradeHelper.swift in Sources */,
 				82F0531F20671D9F00263DB4 /* Grade+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

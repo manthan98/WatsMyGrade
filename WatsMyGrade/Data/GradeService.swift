@@ -51,7 +51,7 @@ class GradeService {
         
         DataController.saveContext()
         
-        print("SUCCESS")
+        print("UPDATE GRADE SUCCESS")
     }
     
 }
