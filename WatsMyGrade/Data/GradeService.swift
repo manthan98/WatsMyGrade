@@ -57,6 +57,7 @@ class GradeService {
     public func deleteGrade(index: Int, grade: Grade) {
         DataController.context.delete(grade)
         self.grades.remove(at: index)
+        DataController.saveContext()
     }
     
 }

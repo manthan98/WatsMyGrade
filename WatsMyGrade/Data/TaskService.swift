@@ -49,6 +49,7 @@ class TaskService {
     public func deleteTask(index: Int, task: Task) {
         DataController.context.delete(task)
         self.tasks.remove(at: index)
+        DataController.saveContext()
     }
     
 }

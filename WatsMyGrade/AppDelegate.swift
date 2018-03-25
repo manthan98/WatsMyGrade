@@ -21,7 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = MainViewController(nibName: nil, bundle: nil)
         let navigationController = UINavigationController(rootViewController: mainViewController)
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navigationController
+        
+        let tabBarController = UITabBarController()
+        let statisticsViewController = StatisticsViewController(nibName: nil, bundle: nil)
+        navigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        statisticsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        tabBarController.viewControllers = [navigationController, statisticsViewController]
+        
+        self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
         
         return true
