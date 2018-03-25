@@ -77,5 +77,11 @@ class GradeCell: UITableViewCell {
         self.gradeLabel.text = "\(grade.grade) %"
         self.weightLabel.text = "\(grade.weight)"
     }
+    
+    public func configureCell(task: Task) {
+        self.nameLabel.text = task.name
+        self.gradeLabel.text = task.date
+        self.weightLabel.text = task.priority
+    }
 
 }

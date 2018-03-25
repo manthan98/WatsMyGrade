@@ -98,6 +98,8 @@ class GradesViewController: UIViewController {
         self.tableView.backgroundColor = UIColor(hexString: "#F0F0F0")
         self.tableView.separatorStyle = .none
         
+        self.segmentedControl.addTarget(self, action: #selector(segmentSwap(_:)), for: .valueChanged)
+        
         // Constraints.
         self.upperContainerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         self.upperContainerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
@@ -122,6 +124,10 @@ class GradesViewController: UIViewController {
         newGradeViewController.course = self.course
         self.navigationController?.pushViewController(newGradeViewController, animated: true)
     }
+    
+    @objc private func segmentSwap(_ sender: UISegmentedControl) {
+        self.tableView.reloadData()
+    }
 
 }
 
@@ -143,7 +149,14 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GradeService.shared.grades.count
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            return GradeService.shared.grades.count
+        case 1:
+            return TaskService.shared.tasks.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -155,7 +168,14 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "GradeCell", for: indexPath) as? GradeCell {
-            cell.configureCell(grade: GradeService.shared.grades[indexPath.row])
+            switch (segmentedControl.selectedSegmentIndex) {
+            case 0:
+                cell.configureCell(grade: GradeService.shared.grades[indexPath.row])
+            case 1:
+                cell.configureCell(task: TaskService.shared.tasks[indexPath.row])
+            default:
+                break
+            }
             return cell
         }
         return UITableViewCell()

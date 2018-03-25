@@ -1,5 +1,5 @@
 //
-//  Grade+CoreDataClass.swift
+//  Task+CoreDataClass.swift
 //  WatsMyGrade
 //
 //  Created by Manthan Shah on 2018-03-24.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Grade)
-public class Grade: NSManagedObject {
+@objc(Task)
+public class Task: NSManagedObject {
 
 }
