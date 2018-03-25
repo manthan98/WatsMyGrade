@@ -46,4 +46,9 @@ class TaskService {
         print("UPDATE TASK SUCCESS")
     }
     
+    public func deleteTask(index: Int, task: Task) {
+        DataController.context.delete(task)
+        self.tasks.remove(at: index)
+    }
+    
 }

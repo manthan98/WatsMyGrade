@@ -218,4 +218,20 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            switch (segmentedControl.selectedSegmentIndex) {
+            case 0:
+                GradeService.shared.deleteGrade(index: indexPath.row, grade: GradeService.shared.grades[indexPath.row])
+                self.getCourseGrade()
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            case 1:
+                TaskService.shared.deleteTask(index: indexPath.row, task: TaskService.shared.tasks[indexPath.row])
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            default:
+                break
+            }
+        }
+    }
 }

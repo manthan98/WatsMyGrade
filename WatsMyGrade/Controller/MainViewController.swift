@@ -94,5 +94,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            CourseService.shared.deleteCourse(index: indexPath.row, course: CourseService.shared.courses[indexPath.row])
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
