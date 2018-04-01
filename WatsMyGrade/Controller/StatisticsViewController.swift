@@ -7,29 +7,30 @@
 //
 
 import UIKit
+import Charts
 
 class StatisticsViewController: UIViewController {
+    
+    let barChart: BarChartView = {
+        let view = BarChartView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        self.view.backgroundColor = UIColor.white
+        
+        self.view.addSubview(self.barChart)
+        self.barChart.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.barChart.topAnchor.constraintEqualToSystemSpacingBelow(self.view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
+        self.barChart.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.barChart.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func updateBarChart() {
+        
     }
-    */
 
 }

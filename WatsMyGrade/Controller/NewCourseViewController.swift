@@ -116,10 +116,21 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
     }
     
+    private func sendAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @objc private func submit() {
         if let code = codeField.text, let name = nameField.text, let credits = creditsField.text {
-            CourseService.shared.createCourse(code: code, name: name, credits: Double(credits)!, grade: 0)
-            self.navigationController?.popViewController(animated: true)
+            if (code == "" || name == "" || credits == "") {
+                self.sendAlert(title: "Error", message: "Invalid or empty fields.")
+            } else {
+                CourseService.shared.createCourse(code: code, name: name, credits: Double(credits)!, grade: 0)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 

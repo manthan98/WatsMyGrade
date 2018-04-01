@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290CE38296B1DA29280C7E91 /* Pods_WatsMyGradeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F373CBF0B266EA573A5BBC /* Pods_WatsMyGradeTests.framework */; };
 		820852922067D9D5001971C0 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820852912067D9D5001971C0 /* StatisticsViewController.swift */; };
 		8221DCA5206330F70017C1BA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA4206330F70017C1BA /* DataController.swift */; };
 		8221DCA7206332350017C1BA /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA6206332350017C1BA /* CourseService.swift */; };
@@ -37,6 +38,8 @@
 		82F0532520672B6800263DB4 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0532420672B6800263DB4 /* EditTaskViewController.swift */; };
 		82F053272067350E00263DB4 /* GradeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053262067350E00263DB4 /* GradeHelper.swift */; };
 		82F053292067365D00263DB4 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F053282067365D00263DB4 /* Double.swift */; };
+		B3AB9F0986FC406F934BC7D4 /* Pods_WatsMyGradeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B4D7D61AD688C0BFB0B7AE /* Pods_WatsMyGradeUITests.framework */; };
+		C023C0EA4DE1AABD8AF92D90 /* Pods_WatsMyGrade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E536C42D1974B4B94DC084F /* Pods_WatsMyGrade.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10F373CBF0B266EA573A5BBC /* Pods_WatsMyGradeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatsMyGradeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27ED89B4226D820C3E1DF09B /* Pods-WatsMyGradeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsMyGradeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatsMyGradeUITests/Pods-WatsMyGradeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4BF9A0DA2A63C6A5B1C67616 /* Pods-WatsMyGrade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsMyGrade.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatsMyGrade/Pods-WatsMyGrade.release.xcconfig"; sourceTree = "<group>"; };
+		4CA01AADC89E1B3DC6F6261D /* Pods-WatsMyGradeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsMyGradeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatsMyGradeTests/Pods-WatsMyGradeTests.release.xcconfig"; sourceTree = "<group>"; };
+		5CDEAFA58190BEFE5C02F876 /* Pods-WatsMyGradeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsMyGradeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatsMyGradeTests/Pods-WatsMyGradeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6E536C42D1974B4B94DC084F /* Pods_WatsMyGrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatsMyGrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		820852912067D9D5001971C0 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		8221DCA4206330F70017C1BA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8221DCA6206332350017C1BA /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
@@ -93,6 +102,9 @@
 		82F0532420672B6800263DB4 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		82F053262067350E00263DB4 /* GradeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeHelper.swift; sourceTree = "<group>"; };
 		82F053282067365D00263DB4 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		D9B4D7D61AD688C0BFB0B7AE /* Pods_WatsMyGradeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatsMyGradeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB8EB87B5A209087F6C66742 /* Pods-WatsMyGrade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsMyGrade.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatsMyGrade/Pods-WatsMyGrade.debug.xcconfig"; sourceTree = "<group>"; };
+		F9F4A377F57996AE725A99A2 /* Pods-WatsMyGradeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatsMyGradeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatsMyGradeUITests/Pods-WatsMyGradeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C023C0EA4DE1AABD8AF92D90 /* Pods_WatsMyGrade.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				290CE38296B1DA29280C7E91 /* Pods_WatsMyGradeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,12 +128,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3AB9F0986FC406F934BC7D4 /* Pods_WatsMyGradeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33CEFEF37128178668FB82A3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB8EB87B5A209087F6C66742 /* Pods-WatsMyGrade.debug.xcconfig */,
+				4BF9A0DA2A63C6A5B1C67616 /* Pods-WatsMyGrade.release.xcconfig */,
+				5CDEAFA58190BEFE5C02F876 /* Pods-WatsMyGradeTests.debug.xcconfig */,
+				4CA01AADC89E1B3DC6F6261D /* Pods-WatsMyGradeTests.release.xcconfig */,
+				F9F4A377F57996AE725A99A2 /* Pods-WatsMyGradeUITests.debug.xcconfig */,
+				27ED89B4226D820C3E1DF09B /* Pods-WatsMyGradeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		692ADDD90DAA4F791F629D91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E536C42D1974B4B94DC084F /* Pods_WatsMyGrade.framework */,
+				10F373CBF0B266EA573A5BBC /* Pods_WatsMyGradeTests.framework */,
+				D9B4D7D61AD688C0BFB0B7AE /* Pods_WatsMyGradeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8221DCA3206330E30017C1BA /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +177,8 @@
 				82642548205EFB8900A8A130 /* WatsMyGradeTests */,
 				82642553205EFB8900A8A130 /* WatsMyGradeUITests */,
 				8264252F205EFB8800A8A130 /* Products */,
+				33CEFEF37128178668FB82A3 /* Pods */,
+				692ADDD90DAA4F791F629D91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,9 +281,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82642559205EFB8900A8A130 /* Build configuration list for PBXNativeTarget "WatsMyGrade" */;
 			buildPhases = (
+				E32CCD3C2C86AFD78D1FBC05 /* [CP] Check Pods Manifest.lock */,
 				8264252A205EFB8800A8A130 /* Sources */,
 				8264252B205EFB8800A8A130 /* Frameworks */,
 				8264252C205EFB8800A8A130 /* Resources */,
+				4DBEDE2A8256E22C4F00149B /* [CP] Embed Pods Frameworks */,
+				E1D63DD46288D2681C68DF76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,9 +301,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8264255C205EFB8900A8A130 /* Build configuration list for PBXNativeTarget "WatsMyGradeTests" */;
 			buildPhases = (
+				C005A7B844FC974BFB91AD4E /* [CP] Check Pods Manifest.lock */,
 				82642541205EFB8900A8A130 /* Sources */,
 				82642542205EFB8900A8A130 /* Frameworks */,
 				82642543205EFB8900A8A130 /* Resources */,
+				524560ACA93AA22A4D1DAAA1 /* [CP] Embed Pods Frameworks */,
+				6715A178FFB94227522F42DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -276,9 +322,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8264255F205EFB8900A8A130 /* Build configuration list for PBXNativeTarget "WatsMyGradeUITests" */;
 			buildPhases = (
+				BB2F0EC5A3149E56FD717C58 /* [CP] Check Pods Manifest.lock */,
 				8264254C205EFB8900A8A130 /* Sources */,
 				8264254D205EFB8900A8A130 /* Frameworks */,
 				8264254E205EFB8900A8A130 /* Resources */,
+				F5197B8AC3DBD4CD30D1F3E6 /* [CP] Embed Pods Frameworks */,
+				BCF12897E816D25425C66027 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,6 +411,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4DBEDE2A8256E22C4F00149B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGrade/Pods-WatsMyGrade-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		524560ACA93AA22A4D1DAAA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGradeTests/Pods-WatsMyGradeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6715A178FFB94227522F42DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGradeTests/Pods-WatsMyGradeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB2F0EC5A3149E56FD717C58 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BCF12897E816D25425C66027 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGradeUITests/Pods-WatsMyGradeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C005A7B844FC974BFB91AD4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D63DD46288D2681C68DF76 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGrade/Pods-WatsMyGrade-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E32CCD3C2C86AFD78D1FBC05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F5197B8AC3DBD4CD30D1F3E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGradeUITests/Pods-WatsMyGradeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8264252A205EFB8800A8A130 /* Sources */ = {
@@ -556,6 +743,7 @@
 		};
 		8264255A205EFB8900A8A130 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB8EB87B5A209087F6C66742 /* Pods-WatsMyGrade.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -571,6 +759,7 @@
 		};
 		8264255B205EFB8900A8A130 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BF9A0DA2A63C6A5B1C67616 /* Pods-WatsMyGrade.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -586,6 +775,7 @@
 		};
 		8264255D205EFB8900A8A130 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CDEAFA58190BEFE5C02F876 /* Pods-WatsMyGradeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -603,6 +793,7 @@
 		};
 		8264255E205EFB8900A8A130 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CA01AADC89E1B3DC6F6261D /* Pods-WatsMyGradeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -620,6 +811,7 @@
 		};
 		82642560205EFB8900A8A130 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9F4A377F57996AE725A99A2 /* Pods-WatsMyGradeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -636,6 +828,7 @@
 		};
 		82642561205EFB8900A8A130 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27ED89B4226D820C3E1DF09B /* Pods-WatsMyGradeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

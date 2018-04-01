@@ -124,10 +124,21 @@ class EditTaskViewController: UIViewController {
         self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
     }
     
+    private func sendAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @objc private func submit() {
         if let name = nameField.text, let priority = priorityField.text, let date = dateField.text {
-            TaskService.shared.updateTask(name: name, priority: priority, date: date, task: self.task)
-            self.navigationController?.popViewController(animated: true)
+            if (name == "" || priority == "" || date == "") {
+                self.sendAlert(title: "Error", message: "Invalid or empty fields.")
+            } else {
+                TaskService.shared.updateTask(name: name, priority: priority, date: date, task: self.task)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
