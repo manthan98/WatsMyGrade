@@ -22,4 +22,12 @@ class GradeHelper {
         return (top / bottom)
     }
     
+    public func getOverallMark(courses: [Course]) -> Double {
+        var average = 0.0
+        for i in courses.indices {
+            average = average + courses[i].grade
+        }
+        return average
+    }
+    
 }
