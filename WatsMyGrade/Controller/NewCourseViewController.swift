@@ -87,6 +87,7 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     private func setup() {
         self.view.backgroundColor = UIColor(hexString: "#F0F0F0")
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.title = "New Course"
         
         self.view.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.codeField)
@@ -116,17 +117,10 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
     }
     
-    private func sendAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     @objc private func submit() {
         if let code = codeField.text, let name = nameField.text, let credits = creditsField.text {
             if (code == "" || name == "" || credits == "") {
-                self.sendAlert(title: "Error", message: "Invalid or empty fields.")
+                ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
                 CourseService.shared.createCourse(code: code, name: name, credits: Double(credits)!, grade: 0)
                 self.navigationController?.popViewController(animated: true)

@@ -37,8 +37,9 @@ class MainViewController: UIViewController {
     }
     
     private func setup() {
-        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20, weight: .bold)]
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#79b9e1")
         self.navigationItem.title = "Courses"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))

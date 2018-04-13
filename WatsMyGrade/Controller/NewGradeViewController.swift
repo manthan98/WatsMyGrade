@@ -112,17 +112,10 @@ class NewGradeViewController: UIViewController {
         self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
     }
     
-    private func sendAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     @objc private func submit() {
         if let name = nameField.text, let grade = gradeField.text, let weight = weightField.text {
             if (name == "" || grade == "" || weight == "") {
-                self.sendAlert(title: "Error", message: "Invalid or empty fields.")
+                ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
                 GradeService.shared.createGrade(name: name, mark: Double(grade)!, weight: Double(weight)!, course: self.course)
                 self.navigationController?.popViewController(animated: true)
