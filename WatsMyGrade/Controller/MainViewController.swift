@@ -37,13 +37,14 @@ class MainViewController: UIViewController {
     }
     
     private func setup() {
-        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         self.navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#79b9e1")
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#FFD54F")
         self.navigationItem.title = "Courses"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true

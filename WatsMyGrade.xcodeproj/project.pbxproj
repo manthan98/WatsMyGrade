@@ -167,7 +167,6 @@
 				8221DCA6206332350017C1BA /* CourseService.swift */,
 				82F0530E2065F8BA00263DB4 /* GradeService.swift */,
 				82F0532020671DBF00263DB4 /* TaskService.swift */,
-				82F053262067350E00263DB4 /* GradeHelper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -273,6 +272,7 @@
 				82642568205F132C00A8A130 /* UIColor.swift */,
 				82F053282067365D00263DB4 /* Double.swift */,
 				82C4027120816F5800FD55DE /* ErrorHandler.swift */,
+				82F053262067350E00263DB4 /* GradeHelper.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";

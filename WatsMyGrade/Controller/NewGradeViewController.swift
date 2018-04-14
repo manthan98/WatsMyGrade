@@ -80,7 +80,7 @@ class NewGradeViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = UIColor.init(hexString: "#F0F0F0")
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Grade"
         
         self.view.addSubview(self.stackView)
@@ -88,7 +88,7 @@ class NewGradeViewController: UIViewController {
         self.stackView.addArrangedSubview(self.gradeField)
         self.stackView.addArrangedSubview(self.weightField)
         
-        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
+        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true
         self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         

@@ -46,7 +46,7 @@ class GradesViewController: UIViewController {
         let items = ["Grades", "Tasks"]
         let sc = UISegmentedControl(items: items)
         sc.selectedSegmentIndex = 0
-        sc.tintColor = UIColor(hexString: "#79b9e1")
+        sc.tintColor = UIColor(hexString: "#787878")
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
@@ -81,10 +81,10 @@ class GradesViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = UIColor(hexString: "#F8F8F8")
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = course.code
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         
         self.courseLabel.text = self.course.name
         self.gradeLabel.text = "\(self.course.grade) %"

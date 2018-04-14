@@ -27,7 +27,7 @@ class GradeHelper {
         for i in courses.indices {
             average = average + courses[i].grade
         }
-        return average
+        return (average / Double(courses.count))
     }
     
 }

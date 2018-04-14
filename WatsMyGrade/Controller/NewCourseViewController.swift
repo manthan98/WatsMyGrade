@@ -86,7 +86,7 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     
     private func setup() {
         self.view.backgroundColor = UIColor(hexString: "#F0F0F0")
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Course"
         
         self.view.addSubview(self.stackView)
@@ -94,7 +94,7 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         self.stackView.addArrangedSubview(self.nameField)
         self.stackView.addArrangedSubview(self.creditsField)
         
-        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
+        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true
         self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         
