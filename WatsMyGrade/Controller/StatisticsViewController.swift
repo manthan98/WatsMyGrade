@@ -53,31 +53,19 @@ class StatisticsViewController: UIViewController, GetChartData {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setup()
-        
-        // Chart stuff.
+        setup()
         populateChartData()
-        lineChart()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        setup()
-        
-        // Chart stuff.
+        setup()
         populateChartData()
-        lineChart()
     }
     
     private func populateChartData() {
         courses = ["Digital Computation", "Mechanics of Deformable Solids", "East Asian Studies", "Dynamics", "Statistics"]
         grades = ["91", "79", "91", "76", "79"]
-    }
-    
-    private func lineChart() {
-        let lineChart = LineChart(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        lineChart.delegate = self
-        self.view.addSubview(lineChart)
     }
     
     func getChartData(with dataPoints: [String], values: [String]) {
@@ -106,6 +94,15 @@ class StatisticsViewController: UIViewController, GetChartData {
         self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         self.stackView.rightAnchor.constraint(equalTo: self.containerView.rightAnchor).isActive = true
         self.stackView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor).isActive = true
+        
+        let lineChart = LineChart()
+        lineChart.delegate = self
+        lineChart.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(lineChart)
+        lineChart.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        lineChart.topAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: 10).isActive = true
+        lineChart.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        lineChart.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
 }

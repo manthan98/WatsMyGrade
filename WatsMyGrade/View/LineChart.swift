@@ -36,8 +36,8 @@ class LineChart: UIView {
         self.backgroundColor = UIColor.white
         self.addSubview(lineChartView)
         lineChartView.translatesAutoresizingMaskIntoConstraints = false
-        lineChartView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        lineChartView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        lineChartView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        lineChartView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         lineChartView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         lineChartView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         
@@ -64,13 +64,13 @@ class LineChart: UIView {
         let chartData = LineChartData()
         chartData.addDataSet(chartDataSet)
         chartData.setDrawValues(true)
-        chartDataSet.colors = [UIColor.green]
-        chartDataSet.setCircleColor(UIColor.green)
-        chartDataSet.circleHoleColor = UIColor.green
+        chartDataSet.colors = [UIColor(hexString: "#FFD54F")]
+        chartDataSet.setCircleColor(UIColor(hexString: "#FFD54F"))
+        chartDataSet.circleHoleColor = UIColor(hexString: "#FFD54F")
         chartDataSet.circleRadius = 4.0
         
         // Gradient fill.
-        let gradientColors = [UIColor.green.cgColor, UIColor.clear.cgColor] as CFArray
+        let gradientColors = [UIColor(hexString: "#FFD54F").cgColor, UIColor.clear.cgColor] as CFArray
         let colorLocations: [CGFloat] = [1.0, 0.0] // Position.
         guard let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) else { print("Gradient error."); return }
         chartDataSet.fill = Fill.fillWithLinearGradient(gradient, angle: 90.0)
@@ -81,6 +81,7 @@ class LineChart: UIView {
         formatter.setValues(values: dataPoints)
         let xAxis: XAxis = XAxis()
         xAxis.valueFormatter = formatter
+        lineChartView.xAxis.enabled = false
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.xAxis.drawGridLinesEnabled = false
         lineChartView.xAxis.valueFormatter = xAxis.valueFormatter
@@ -89,32 +90,9 @@ class LineChart: UIView {
         lineChartView.rightAxis.enabled = false
         lineChartView.leftAxis.drawGridLinesEnabled = false
         lineChartView.leftAxis.drawLabelsEnabled = true
+        lineChartView.leftAxis.enabled = false
         
         lineChartView.data = chartData
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
