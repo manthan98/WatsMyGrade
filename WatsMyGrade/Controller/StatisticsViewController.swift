@@ -9,7 +9,17 @@
 import UIKit
 import Charts
 
-class StatisticsViewController: UIViewController {
+protocol GetChartData {
+    func getChartData(with dataPoints: [String], values: [String])
+    var courses: [String] { get set }
+    var grades: [String] { get set }
+}
+
+class StatisticsViewController: UIViewController, GetChartData {
+    
+    // Chart data.
+    var courses = [String]()
+    var grades = [String]()
     
     let containerView: UIView = {
         let view = UIView()
@@ -43,12 +53,36 @@ class StatisticsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+//        setup()
+        
+        // Chart stuff.
+        populateChartData()
+        lineChart()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setup()
+//        setup()
+        
+        // Chart stuff.
+        populateChartData()
+        lineChart()
+    }
+    
+    private func populateChartData() {
+        courses = ["Digital Computation", "Mechanics of Deformable Solids", "East Asian Studies", "Dynamics", "Statistics"]
+        grades = ["91", "79", "91", "76", "79"]
+    }
+    
+    private func lineChart() {
+        let lineChart = LineChart(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        lineChart.delegate = self
+        self.view.addSubview(lineChart)
+    }
+    
+    func getChartData(with dataPoints: [String], values: [String]) {
+        self.courses = dataPoints
+        self.grades = values
     }
     
     private func setup() {
@@ -74,4 +108,19 @@ class StatisticsViewController: UIViewController {
         self.stackView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor).isActive = true
     }
 
+}
+
+// MARK: - ChartFormatter required to configure axis.
+public class ChartFormatter: NSObject, IAxisValueFormatter {
+    
+    var courses = [String]()
+    
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return courses[Int(value)]
+    }
+    
+    public func setValues(values: [String]) {
+        self.courses = values
+    }
+    
 }
