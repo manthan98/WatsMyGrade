@@ -10,16 +10,16 @@ import UIKit
 import Charts
 
 protocol GetChartData {
-    func getChartData(with dataPoints: [String], values: [String])
+    func getChartData(with dataPoints: [String], values: [Double])
     var courses: [String] { get set }
-    var grades: [String] { get set }
+    var grades: [Double] { get set }
 }
 
 class StatisticsViewController: UIViewController, GetChartData {
     
     // Chart data.
     var courses = [String]()
-    var grades = [String]()
+    var grades = [Double]()
     
     let containerView: UIView = {
         let view = UIView()
@@ -60,15 +60,17 @@ class StatisticsViewController: UIViewController, GetChartData {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setup()
-        populateChartData()
     }
     
     private func populateChartData() {
-        courses = ["Digital Computation", "Mechanics of Deformable Solids", "East Asian Studies", "Dynamics", "Statistics"]
-        grades = ["91", "79", "91", "76", "79"]
+        for i in CourseService.shared.courses.indices {
+            guard let code = CourseService.shared.courses[i].code else { return }
+            courses.append(code)
+            grades.append(CourseService.shared.courses[i].grade)
+        }
     }
     
-    func getChartData(with dataPoints: [String], values: [String]) {
+    func getChartData(with dataPoints: [String], values: [Double]) {
         self.courses = dataPoints
         self.grades = values
     }

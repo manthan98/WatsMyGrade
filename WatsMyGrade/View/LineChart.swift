@@ -17,7 +17,7 @@ class LineChart: UIView {
     
     // Chart data.
     var courses = [String]()
-    var grades = [String]()
+    var grades = [Double]()
     
     var delegate: GetChartData! {
         didSet {
@@ -48,15 +48,15 @@ class LineChart: UIView {
         setLineChart(dataPoints: courses, values: grades)
     }
     
-    func setLineChart(dataPoints: [String], values: [String]) {
+    func setLineChart(dataPoints: [String], values: [Double]) {
         // No data setup.
         lineChartView.noDataTextColor = UIColor.black
         lineChartView.noDataText = "No data available."
         lineChartView.backgroundColor = UIColor.white
         
         // Data point setup and colour configuration.
-        for i in 0..<dataPoints.count {
-            let dataPoint = ChartDataEntry(x: Double(i), y: Double(values[i])!)
+        for i in dataPoints.indices {
+            let dataPoint = ChartDataEntry(x: Double(i), y: values[i])
             lineDataEntry.append(dataPoint)
         }
         
