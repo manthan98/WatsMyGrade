@@ -12,6 +12,7 @@
 		8221DCA5206330F70017C1BA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA4206330F70017C1BA /* DataController.swift */; };
 		8221DCA7206332350017C1BA /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA6206332350017C1BA /* CourseService.swift */; };
 		8221DCAD20633BD40017C1BA /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCAC20633BD40017C1BA /* GradesViewController.swift */; };
+		824649C22082C72F00460119 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824649C12082C72F00460119 /* LineChart.swift */; };
 		82642532205EFB8900A8A130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642531205EFB8900A8A130 /* AppDelegate.swift */; };
 		82642534205EFB8900A8A130 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642533205EFB8900A8A130 /* MainViewController.swift */; };
 		82642537205EFB8900A8A130 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82642535205EFB8900A8A130 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		8221DCA4206330F70017C1BA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8221DCA6206332350017C1BA /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
 		8221DCAC20633BD40017C1BA /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
+		824649C12082C72F00460119 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		8264252E205EFB8800A8A130 /* WatsMyGrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatsMyGrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82642531205EFB8900A8A130 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82642533205EFB8900A8A130 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				8264256A205F148F00A8A130 /* CourseCell.swift */,
 				82F0531020668FD200263DB4 /* GradeCell.swift */,
+				824649C12082C72F00460119 /* LineChart.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 			files = (
 				82F0532120671DBF00263DB4 /* TaskService.swift in Sources */,
 				820852922067D9D5001971C0 /* StatisticsViewController.swift in Sources */,
+				824649C22082C72F00460119 /* LineChart.swift in Sources */,
 				82F053232067276500263DB4 /* NewTaskViewController.swift in Sources */,
 				82F0531A20671D9F00263DB4 /* Course+CoreDataClass.swift in Sources */,
 				82F0531B20671D9F00263DB4 /* Course+CoreDataProperties.swift in Sources */,
