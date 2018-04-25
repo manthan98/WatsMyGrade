@@ -83,7 +83,9 @@ class GradesViewController: UIViewController {
         self.view.backgroundColor = UIColor(hexString: "#F8F8F8")
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = course.code
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        plusButton.accessibilityIdentifier = "newGradeOrTaskPlusButton"
+        self.navigationItem.rightBarButtonItem = plusButton
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         
         self.courseLabel.text = self.course.name

@@ -43,7 +43,9 @@ class MainViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#FFD54F")
         self.navigationItem.title = "Courses"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        plusButton.accessibilityIdentifier = "newCoursePlusButton"
+        self.navigationItem.rightBarButtonItem = plusButton
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
