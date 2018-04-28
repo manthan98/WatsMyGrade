@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AF4A4D0CDA62794A1DACDA545D8E17D3"
+               BlueprintIdentifier = "DF32F39CC456894478D97CFF36C074DA"
                BuildableName = "Pods_WatsMyGrade.framework"
                BlueprintName = "Pods-WatsMyGrade"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AF4A4D0CDA62794A1DACDA545D8E17D3"
+            BlueprintIdentifier = "DF32F39CC456894478D97CFF36C074DA"
             BuildableName = "Pods_WatsMyGrade.framework"
             BlueprintName = "Pods-WatsMyGrade"
             ReferencedContainer = "container:Pods.xcodeproj">

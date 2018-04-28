@@ -12,6 +12,7 @@
 		8221DCA5206330F70017C1BA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA4206330F70017C1BA /* DataController.swift */; };
 		8221DCA7206332350017C1BA /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCA6206332350017C1BA /* CourseService.swift */; };
 		8221DCAD20633BD40017C1BA /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8221DCAC20633BD40017C1BA /* GradesViewController.swift */; };
+		82318DBC20941219000413D0 /* WebAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 82318DBB20941219000413D0 /* WebAPIClient.m */; };
 		824649C22082C72F00460119 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824649C12082C72F00460119 /* LineChart.swift */; };
 		8263543620900CAB00C6FB01 /* NavigationSmokeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263543520900CAB00C6FB01 /* NavigationSmokeTest.swift */; };
 		82642532205EFB8900A8A130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642531205EFB8900A8A130 /* AppDelegate.swift */; };
@@ -73,6 +74,9 @@
 		8221DCA4206330F70017C1BA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		8221DCA6206332350017C1BA /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
 		8221DCAC20633BD40017C1BA /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
+		82318DB6209411A8000413D0 /* WatsMyGrade-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatsMyGrade-Bridging-Header.h"; sourceTree = "<group>"; };
+		82318DBA20941219000413D0 /* WebAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebAPIClient.h; sourceTree = "<group>"; };
+		82318DBB20941219000413D0 /* WebAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebAPIClient.m; sourceTree = "<group>"; };
 		824649C12082C72F00460119 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		8263543520900CAB00C6FB01 /* NavigationSmokeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSmokeTest.swift; sourceTree = "<group>"; };
 		8264252E205EFB8800A8A130 /* WatsMyGrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatsMyGrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +215,9 @@
 				8264253D205EFB8900A8A130 /* LaunchScreen.storyboard */,
 				82642540205EFB8900A8A130 /* Info.plist */,
 				82642538205EFB8900A8A130 /* WatsMyGrade.xcdatamodeld */,
+				82318DBA20941219000413D0 /* WebAPIClient.h */,
+				82318DBB20941219000413D0 /* WebAPIClient.m */,
+				82318DB6209411A8000413D0 /* WatsMyGrade-Bridging-Header.h */,
 			);
 			path = WatsMyGrade;
 			sourceTree = "<group>";
@@ -360,6 +367,7 @@
 				TargetAttributes = {
 					8264252D205EFB8800A8A130 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					82642544205EFB8900A8A130 = {
@@ -428,9 +436,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WatsMyGrade/Pods-WatsMyGrade-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -473,13 +486,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatsMyGradeUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BCF12897E816D25425C66027 /* [CP] Copy Pods Resources */ = {
@@ -503,13 +519,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatsMyGradeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E1D63DD46288D2681C68DF76 /* [CP] Copy Pods Resources */ = {
@@ -533,13 +552,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatsMyGrade-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5197B8AC3DBD4CD30D1F3E6 /* [CP] Embed Pods Frameworks */ = {
@@ -580,6 +602,7 @@
 				82F053292067365D00263DB4 /* Double.swift in Sources */,
 				82F0531C20671D9F00263DB4 /* Task+CoreDataClass.swift in Sources */,
 				82F0532520672B6800263DB4 /* EditTaskViewController.swift in Sources */,
+				82318DBC20941219000413D0 /* WebAPIClient.m in Sources */,
 				82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */,
 				82642534205EFB8900A8A130 /* MainViewController.swift in Sources */,
 				8264253A205EFB8900A8A130 /* WatsMyGrade.xcdatamodeld in Sources */,
@@ -758,12 +781,15 @@
 			baseConfigurationReference = EB8EB87B5A209087F6C66742 /* Pods-WatsMyGrade.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J9JKX35A2N;
 				INFOPLIST_FILE = WatsMyGrade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.manthanshah.WatsMyGrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WatsMyGrade/WatsMyGrade-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -774,12 +800,14 @@
 			baseConfigurationReference = 4BF9A0DA2A63C6A5B1C67616 /* Pods-WatsMyGrade.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J9JKX35A2N;
 				INFOPLIST_FILE = WatsMyGrade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.manthanshah.WatsMyGrade;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WatsMyGrade/WatsMyGrade-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
