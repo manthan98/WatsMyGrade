@@ -26,6 +26,7 @@
 		82642563205EFEFA00A8A130 /* NewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642562205EFEFA00A8A130 /* NewCourseViewController.swift */; };
 		82642569205F132C00A8A130 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642568205F132C00A8A130 /* UIColor.swift */; };
 		8264256B205F148F00A8A130 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264256A205F148F00A8A130 /* CourseCell.swift */; };
+		82AFCEF1209532860078B6A2 /* SyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFCEF0209532860078B6A2 /* SyncEngine.m */; };
 		82C4027220816F5800FD55DE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4027120816F5800FD55DE /* ErrorHandler.swift */; };
 		82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */; };
 		82F0530F2065F8BA00263DB4 /* GradeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530E2065F8BA00263DB4 /* GradeService.swift */; };
@@ -96,6 +97,8 @@
 		82642562205EFEFA00A8A130 /* NewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCourseViewController.swift; sourceTree = "<group>"; };
 		82642568205F132C00A8A130 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8264256A205F148F00A8A130 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
+		82AFCEEF209532860078B6A2 /* SyncEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncEngine.h; sourceTree = "<group>"; };
+		82AFCEF0209532860078B6A2 /* SyncEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncEngine.m; sourceTree = "<group>"; };
 		82C4027120816F5800FD55DE /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGradeViewController.swift; sourceTree = "<group>"; };
 		82F0530E2065F8BA00263DB4 /* GradeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeService.swift; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 			children = (
 				82318DBA20941219000413D0 /* WebAPIClient.h */,
 				82318DBB20941219000413D0 /* WebAPIClient.m */,
+				82AFCEEF209532860078B6A2 /* SyncEngine.h */,
+				82AFCEF0209532860078B6A2 /* SyncEngine.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				8221DCA5206330F70017C1BA /* DataController.swift in Sources */,
 				8264256B205F148F00A8A130 /* CourseCell.swift in Sources */,
 				82F0531E20671D9F00263DB4 /* Grade+CoreDataClass.swift in Sources */,
+				82AFCEF1209532860078B6A2 /* SyncEngine.m in Sources */,
 				82F053292067365D00263DB4 /* Double.swift in Sources */,
 				82F0531C20671D9F00263DB4 /* Task+CoreDataClass.swift in Sources */,
 				82F0532520672B6800263DB4 /* EditTaskViewController.swift in Sources */,
