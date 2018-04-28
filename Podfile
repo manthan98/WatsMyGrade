@@ -7,6 +7,7 @@ target 'WatsMyGrade' do
 
   # Pods for WatsMyGrade
   pod 'Charts'
+  pod 'AFNetworking',  '~> 1.3.3'
 
   target 'WatsMyGradeTests' do
     inherit! :search_paths
