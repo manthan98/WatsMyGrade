@@ -10,7 +10,7 @@ import XCTest
 
 class NavigationSmokeTest: XCTestCase {
     
-    var app: XCUIApplication!
+    var app = XCUIApplication()
     
     override func setUp() {
         super.setUp()
@@ -30,14 +30,11 @@ class NavigationSmokeTest: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        let app = XCUIApplication()
+    func testTapThroughViews() {
         
-        // New course.
         app.navigationBars.buttons["newCoursePlusButton"].tap()
         app.navigationBars.buttons["Courses"].tap()
         
-        // Course.
         app.tables.cells.element(boundBy: 0).tap()
         
         app.navigationBars.buttons["newGradeOrTaskPlusButton"].tap()
@@ -47,6 +44,9 @@ class NavigationSmokeTest: XCTestCase {
         app.navigationBars.buttons["BME 121"].tap()
         
         app.segmentedControls.buttons["Tasks"].tap()
+        app.navigationBars.buttons["newGradeOrTaskPlusButton"].tap()
+        app.navigationBars.buttons["BME 121"].tap()
+        
         app.tables.cells.element(boundBy: 0).tap()
         app.navigationBars.buttons["BME 121"].tap()
     }

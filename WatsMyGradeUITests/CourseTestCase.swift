@@ -1,14 +1,16 @@
 //
-//  WatsMyGradeUITests.swift
+//  CourseTestCase.swift
 //  WatsMyGradeUITests
 //
-//  Created by Manthan Shah on 2018-03-18.
+//  Created by Manthan Shah on 2018-04-27.
 //  Copyright © 2018 Manthan Shah. All rights reserved.
 //
 
 import XCTest
 
-class WatsMyGradeUITests: XCTestCase {
+class CourseTestCase: XCTestCase {
+    
+    var app = XCUIApplication()
         
     override func setUp() {
         super.setUp()
@@ -28,9 +30,27 @@ class WatsMyGradeUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCreateValidCourse() {
+        app.navigationBars.buttons["newCoursePlusButton"].tap()
+        
+        app.textFields["Code"].tap()
+        app.textFields["Code"].typeText("TEST 123")
+        app.textFields["Name"].tap()
+        app.textFields["Name"].typeText("Theory of Memes")
+        app.textFields["Credits"].tap()
+        app.textFields["Credits"].typeText("0")
+        
+        app.buttons["Submit"].tap()
+    }
+    
+    func testCreateEmptyCourse() {
+        app.navigationBars.buttons["newCoursePlusButton"].tap()
+        
+        app.buttons["Submit"].tap()
+        
+        _ = app.alerts.firstMatch.waitForExistence(timeout: TimeInterval(10))
+        XCTAssertEqual(app.alerts.firstMatch.label, "Error")
+        app.alerts.firstMatch.buttons["OK"].tap()
     }
     
 }
