@@ -32,7 +32,7 @@ class EditTaskViewController: UIViewController {
         tf.borderStyle = .roundedRect
         tf.textColor = UIColor.black
         tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Grade"
+        tf.placeholder = "Priority"
         tf.autocorrectionType = .yes
         tf.keyboardType = .default
         tf.clearButtonMode = .whileEditing
