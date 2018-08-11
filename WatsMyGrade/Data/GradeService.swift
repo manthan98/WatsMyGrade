@@ -18,9 +18,9 @@ class GradeService {
     static var shared = GradeService()
     weak var delegate: GradeServiceDelegate?
     
-    public var grades = [Grade]()
+    var grades = [Grade]()
     
-    public func createGrade(name: String, mark: Double, weight: Double, course: Course) {
+    func createGrade(name: String, mark: Double, weight: Double, course: Course) {
         let grade = Grade(context: DataController.context)
         grade.name = name
         grade.grade = mark
@@ -30,7 +30,7 @@ class GradeService {
         self.grades.append(grade)
     }
     
-    public func getGrades(course: Course) {
+    func getGrades(course: Course) {
         let fetchRequest: NSFetchRequest<Grade> = Grade.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "course == %@", course)
         
@@ -44,7 +44,7 @@ class GradeService {
         }
     }
     
-    public func updateGrade(mark: Double, name: String, weight: Double, grade: Grade) {
+    func updateGrade(mark: Double, name: String, weight: Double, grade: Grade) {
         grade.setValue(mark, forKey: "grade")
         grade.setValue(name, forKey: "name")
         grade.setValue(weight, forKey: "weight")
@@ -54,7 +54,7 @@ class GradeService {
         print("UPDATE GRADE SUCCESS")
     }
     
-    public func deleteGrade(index: Int, grade: Grade) {
+    func deleteGrade(index: Int, grade: Grade) {
         DataController.context.delete(grade)
         self.grades.remove(at: index)
         DataController.saveContext()

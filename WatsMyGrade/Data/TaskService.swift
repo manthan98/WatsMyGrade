@@ -13,9 +13,9 @@ class TaskService {
     
     static var shared = TaskService()
     
-    public var tasks = [Task]()
+    var tasks = [Task]()
     
-    public func createTask(name: String, priority: String, date: String, course: Course) {
+    func createTask(name: String, priority: String, date: String, course: Course) {
         let task = Task(context: DataController.context)
         task.name = name
         task.priority = priority
@@ -25,7 +25,7 @@ class TaskService {
         self.tasks.append(task)
     }
     
-    public func getTasks(course: Course) {
+    func getTasks(course: Course) {
         let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "course == %@", course)
         
@@ -37,7 +37,7 @@ class TaskService {
         }
     }
     
-    public func updateTask(name: String, priority: String, date: String, task: Task) {
+    func updateTask(name: String, priority: String, date: String, task: Task) {
         task.name = name
         task.priority = priority
         task.date = date
@@ -46,7 +46,7 @@ class TaskService {
         print("UPDATE TASK SUCCESS")
     }
     
-    public func deleteTask(index: Int, task: Task) {
+    func deleteTask(index: Int, task: Task) {
         DataController.context.delete(task)
         self.tasks.remove(at: index)
         DataController.saveContext()

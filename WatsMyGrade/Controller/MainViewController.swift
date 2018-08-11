@@ -10,10 +10,40 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
+    }()
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let overallGradeNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let overallGradeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-UltraLight", size: 40)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.distribution = .equalSpacing
+        sv.alignment = .center
+        sv.spacing = 10
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
     }()
     
     override func viewDidLoad() {
@@ -25,8 +55,6 @@ class MainViewController: UIViewController {
         
         CourseService.shared.delegate = self
         CourseService.shared.getCourses()
-        
-        self.view.addSubview(tableView)
         
         setup()
     }
@@ -48,7 +76,28 @@ class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = plusButton
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
         
-        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.overallGradeNameLabel.text = "Overall Average"
+        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses)) %"
+        self.containerView.backgroundColor = UIColor(hexString: "#F8F8F8")
+        
+        // Add views.
+        self.stackView.addArrangedSubview(self.overallGradeNameLabel)
+        self.stackView.addArrangedSubview(self.overallGradeLabel)
+        self.containerView.addSubview(self.stackView)
+        self.view.addSubview(self.containerView)
+        self.view.addSubview(tableView)
+        
+        // Constraints.
+        self.containerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.containerView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.containerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        
+        self.stackView.leftAnchor.constraint(equalTo: self.containerView.leftAnchor).isActive = true
+        self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+        self.stackView.rightAnchor.constraint(equalTo: self.containerView.rightAnchor).isActive = true
+        self.stackView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -15).isActive = true
+        
+        self.tableView.topAnchor.constraint(equalTo: self.containerView.bottomAnchor).isActive = true
         self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true

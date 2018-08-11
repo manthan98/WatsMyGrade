@@ -12,7 +12,7 @@ class NewGradeViewController: UIViewController {
     
     var course = Course()
     
-    let nameField: UITextField = {
+    private let nameField: UITextField = {
         let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
         let tf = UITextField(frame: textFrame)
         tf.borderStyle = .roundedRect
@@ -26,7 +26,7 @@ class NewGradeViewController: UIViewController {
         return tf
     }()
     
-    let gradeField: UITextField = {
+    private let gradeField: UITextField = {
         let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
         let tf = UITextField(frame: textFrame)
         tf.borderStyle = .roundedRect
@@ -40,7 +40,7 @@ class NewGradeViewController: UIViewController {
         return tf
     }()
     
-    let weightField: UITextField = {
+    private let weightField: UITextField = {
         let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
         let tf = UITextField(frame: textFrame)
         tf.borderStyle = .roundedRect
@@ -54,7 +54,7 @@ class NewGradeViewController: UIViewController {
         return tf
     }()
     
-    let submitButton: UIButton = {
+    private let submitButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.black
         button.setTitle("Button", for: .normal)
@@ -62,7 +62,7 @@ class NewGradeViewController: UIViewController {
         return button
     }()
     
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
         sv.distribution = .equalSpacing
@@ -83,11 +83,13 @@ class NewGradeViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Grade"
         
+        // Add views.
         self.view.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.nameField)
         self.stackView.addArrangedSubview(self.gradeField)
         self.stackView.addArrangedSubview(self.weightField)
         
+        // Constraints.
         self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true
         self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true

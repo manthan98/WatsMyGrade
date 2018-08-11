@@ -18,9 +18,9 @@ class CourseService {
     static var shared = CourseService()
     weak var delegate: CourseServiceDelegate?
     
-    public var courses = [Course]()
+    var courses = [Course]()
     
-    public func createCourse(code: String, name: String, credits: Double, grade: Double) {
+    func createCourse(code: String, name: String, credits: Double, grade: Double) {
         let course = Course(context: DataController.context)
         course.code = code
         course.name = name
@@ -30,7 +30,7 @@ class CourseService {
         self.courses.append(course)
     }
     
-    public func getCourses() {
+    func getCourses() {
         let fetchRequest: NSFetchRequest<Course> = Course.fetchRequest()
         
         do {
@@ -42,7 +42,7 @@ class CourseService {
         }
     }
     
-    public func updateCourse(code: String, name: String, credits: Double, grade: Double, course: Course) {
+    func updateCourse(code: String, name: String, credits: Double, grade: Double, course: Course) {
         course.code = code
         course.name = name
         course.credits = credits
@@ -52,7 +52,7 @@ class CourseService {
         print("COURSE UPDATE SUCCESS")
     }
     
-    public func deleteCourse(index: Int, course: Course) {
+    func deleteCourse(index: Int, course: Course) {
         DataController.context.delete(course)
         self.courses.remove(at: index)
         DataController.saveContext()

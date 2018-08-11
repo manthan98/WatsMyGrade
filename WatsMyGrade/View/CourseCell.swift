@@ -10,26 +10,36 @@ import UIKit
 
 class CourseCell: UITableViewCell {
     
-    var codeLabel: UILabel = {
+    private let codeLabel: UILabel = {
         let cl = UILabel()
         cl.textAlignment = .left
         cl.font = UIFont(name: "AvenirNext-Regular", size: 22)
         return cl
     }()
     
-    var gradeLabel: UILabel = {
+    private let gradeLabel: UILabel = {
         let gl = UILabel()
         gl.textAlignment = .right
         gl.font = UIFont(name: "AvenirNext-UltraLight", size: 22)
         return gl
     }()
     
-    var nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let nl = UILabel()
         nl.translatesAutoresizingMaskIntoConstraints = false
         nl.textAlignment = .left
         nl.font = UIFont(name: "AvenirNext-Regular", size: 18)
         return nl
+    }()
+    
+    private let stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.distribution = .equalCentering
+        sv.alignment = .center
+        sv.spacing = 10
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
     }()
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,30 +53,23 @@ class CourseCell: UITableViewCell {
     }
     
     private func setup() {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .equalCentering
-        stackView.alignment = .center
-        stackView.spacing = 10
+        // Add views.
         stackView.addArrangedSubview(self.codeLabel)
         stackView.addArrangedSubview(self.gradeLabel)
         self.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-                stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-                stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-                stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10)
-            ])
-        
         self.addSubview(self.nameLabel)
-        NSLayoutConstraint.activate([
-                self.nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-                self.nameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
-                self.nameLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 14)
-            ])
+        
+        // Constraints.
+        self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        
+        self.nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        self.nameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        self.nameLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 14).isActive = true
     }
     
-    public func configureCell(course: Course) {
+    func configureCell(course: Course) {
         self.codeLabel.text = course.code
         self.nameLabel.text = course.name
         self.gradeLabel.text = "\(course.grade) %"

@@ -10,21 +10,21 @@ import UIKit
 
 class GradeCell: UITableViewCell {
     
-    var nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let nl = UILabel()
         nl.textAlignment = .left
         nl.font = UIFont(name: "AvenirNext-Regular", size: 22)
         return nl
     }()
     
-    var gradeLabel: UILabel = {
+    private let gradeLabel: UILabel = {
         let gl = UILabel()
         gl.textAlignment = .right
         gl.font = UIFont(name: "AvenirNext-UltraLight", size: 22)
         return gl
     }()
     
-    var weightLabel: UILabel = {
+    private let weightLabel: UILabel = {
         let wl = UILabel()
         wl.translatesAutoresizingMaskIntoConstraints = false
         wl.textAlignment = .left
@@ -32,7 +32,7 @@ class GradeCell: UITableViewCell {
         return wl
     }()
     
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let s1 = UIStackView()
         s1.axis = .horizontal
         s1.distribution = .equalCentering
@@ -55,30 +55,26 @@ class GradeCell: UITableViewCell {
     private func setup() {
         self.stackView.addArrangedSubview(self.nameLabel)
         self.stackView.addArrangedSubview(self.gradeLabel)
+        self.addSubview(self.stackView)
+        self.addSubview(self.weightLabel)
         
         // Constraints.
-        self.addSubview(self.stackView)
-        NSLayoutConstraint.activate([
-                self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-                self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
-                self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10)
-            ])
+        self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14).isActive = true
+        self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         
-        self.addSubview(self.weightLabel)
-        NSLayoutConstraint.activate([
-                self.weightLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-                self.weightLabel.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 14),
-                self.weightLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10)
-            ])
+        self.weightLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        self.weightLabel.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 14).isActive = true
+        self.weightLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
-    public func configureCell(grade: Grade) {
+    func configureCell(grade: Grade) {
         self.nameLabel.text = grade.name
         self.gradeLabel.text = "\(grade.grade) %"
         self.weightLabel.text = "\(grade.weight)"
     }
     
-    public func configureCell(task: Task) {
+    func configureCell(task: Task) {
         self.nameLabel.text = task.name
         self.gradeLabel.text = task.date
         self.weightLabel.text = task.priority

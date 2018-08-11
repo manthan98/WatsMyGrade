@@ -200,6 +200,7 @@
 		82642530205EFB8900A8A130 /* WatsMyGrade */ = {
 			isa = PBXGroup;
 			children = (
+				82A25BDC211FA1D200C2DDFF /* Deprecated */,
 				82642567205F131D00A8A130 /* Util */,
 				8221DCA3206330E30017C1BA /* Data */,
 				82642566205F130700A8A130 /* Model */,
@@ -244,7 +245,6 @@
 				82F053122066963200263DB4 /* EditGradeViewController.swift */,
 				82F053222067276500263DB4 /* NewTaskViewController.swift */,
 				82F0532420672B6800263DB4 /* EditTaskViewController.swift */,
-				820852912067D9D5001971C0 /* StatisticsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -281,6 +281,14 @@
 				82F053262067350E00263DB4 /* GradeHelper.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		82A25BDC211FA1D200C2DDFF /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				820852912067D9D5001971C0 /* StatisticsViewController.swift */,
+			);
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

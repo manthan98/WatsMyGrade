@@ -12,7 +12,7 @@ class EditTaskViewController: UIViewController {
     
     var task = Task()
     
-    let nameField: UITextField = {
+    private let nameField: UITextField = {
         let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
         let tf = UITextField(frame: textFrame)
         tf.borderStyle = .roundedRect
@@ -26,7 +26,7 @@ class EditTaskViewController: UIViewController {
         return tf
     }()
     
-    let priorityField: UITextField = {
+    private let priorityField: UITextField = {
         let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
         let tf = UITextField(frame: textFrame)
         tf.borderStyle = .roundedRect
@@ -40,7 +40,7 @@ class EditTaskViewController: UIViewController {
         return tf
     }()
     
-    let dateField: UITextField = {
+    private let dateField: UITextField = {
         let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
         let tf = UITextField(frame: textFrame)
         tf.borderStyle = .roundedRect
@@ -54,7 +54,7 @@ class EditTaskViewController: UIViewController {
         return tf
     }()
     
-    let submitButton: UIButton = {
+    private let submitButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.black
         button.setTitle("Button", for: .normal)
@@ -62,7 +62,7 @@ class EditTaskViewController: UIViewController {
         return button
     }()
     
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
         sv.distribution = .equalSpacing
@@ -72,8 +72,8 @@ class EditTaskViewController: UIViewController {
         return sv
     }()
     
-    let datePicker = UIDatePicker()
-    let dateFormatter = DateFormatter()
+    private let datePicker = UIDatePicker()
+    private let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +90,7 @@ class EditTaskViewController: UIViewController {
         self.priorityField.text = self.task.priority
         self.dateField.text = self.task.date
         
+        // Add views.
         self.view.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.nameField)
         self.stackView.addArrangedSubview(self.priorityField)
