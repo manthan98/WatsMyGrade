@@ -119,7 +119,9 @@ class NewGradeViewController: UIViewController {
             if (name == "" || grade == "" || weight == "") {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
-                GradeService.shared.createGrade(name: name, mark: Double(grade)!, weight: Double(weight)!, course: self.course)
+                guard let grade = Double(grade) else { return }
+                guard let weight = Double(weight) else { return }
+                GradeService.shared.createGrade(name: name, mark: grade, weight: weight, course: self.course)
                 self.navigationController?.popViewController(animated: true)
             }
         }

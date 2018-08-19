@@ -124,7 +124,8 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
             if (code == "" || name == "" || credits == "") {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
-                CourseService.shared.createCourse(code: code, name: name, credits: Double(credits)!, grade: 0)
+                guard let credits = Double(credits) else { return }
+                CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)
                 self.navigationController?.popViewController(animated: true)
             }
         }

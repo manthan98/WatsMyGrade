@@ -123,7 +123,9 @@ class EditGradeViewController: UIViewController {
             if (mark == "" || name == "" || weight == "") {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
-                GradeService.shared.updateGrade(mark: Double(mark)!, name: name, weight: Double(weight)!, grade: self.grade)
+                guard let mark = Double(mark) else { return }
+                guard let weight = Double(weight) else { return }
+                GradeService.shared.updateGrade(mark: mark, name: name, weight: weight, grade: self.grade)
                 self.navigationController?.popViewController(animated: true)
             }
         }
