@@ -26,6 +26,7 @@
 		82642569205F132C00A8A130 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642568205F132C00A8A130 /* UIColor.swift */; };
 		8264256B205F148F00A8A130 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264256A205F148F00A8A130 /* CourseCell.swift */; };
 		82C4027220816F5800FD55DE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4027120816F5800FD55DE /* ErrorHandler.swift */; };
+		82C778A5212C6685007958EE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C778A4212C6685007958EE /* UIView.swift */; };
 		82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */; };
 		82F0530F2065F8BA00263DB4 /* GradeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530E2065F8BA00263DB4 /* GradeService.swift */; };
 		82F0531120668FD200263DB4 /* GradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0531020668FD200263DB4 /* GradeCell.swift */; };
@@ -93,6 +94,7 @@
 		82642568205F132C00A8A130 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8264256A205F148F00A8A130 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		82C4027120816F5800FD55DE /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		82C778A4212C6685007958EE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGradeViewController.swift; sourceTree = "<group>"; };
 		82F0530E2065F8BA00263DB4 /* GradeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeService.swift; sourceTree = "<group>"; };
 		82F0531020668FD200263DB4 /* GradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCell.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				82642568205F132C00A8A130 /* UIColor.swift */,
+				82C778A4212C6685007958EE /* UIView.swift */,
 				82F053282067365D00263DB4 /* Double.swift */,
 				82C4027120816F5800FD55DE /* ErrorHandler.swift */,
 				82F053262067350E00263DB4 /* GradeHelper.swift */,
@@ -596,6 +599,7 @@
 				82F053132066963200263DB4 /* EditGradeViewController.swift in Sources */,
 				82642569205F132C00A8A130 /* UIColor.swift in Sources */,
 				82F0531120668FD200263DB4 /* GradeCell.swift in Sources */,
+				82C778A5212C6685007958EE /* UIView.swift in Sources */,
 				8221DCAD20633BD40017C1BA /* GradesViewController.swift in Sources */,
 				82F053272067350E00263DB4 /* GradeHelper.swift in Sources */,
 				82F0531F20671D9F00263DB4 /* Grade+CoreDataProperties.swift in Sources */,

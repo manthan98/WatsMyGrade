@@ -18,7 +18,7 @@ class GradeService {
     static var shared = GradeService()
     weak var delegate: GradeServiceDelegate?
     
-    var grades = [Grade]()
+    private(set) var grades = [Grade]()
     
     func createGrade(name: String, mark: Double, weight: Double, course: Course) {
         let grade = Grade(context: DataController.context)

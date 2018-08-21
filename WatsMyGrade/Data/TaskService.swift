@@ -13,7 +13,7 @@ class TaskService {
     
     static var shared = TaskService()
     
-    var tasks = [Task]()
+    private(set) var tasks = [Task]()
     
     func createTask(name: String, priority: String, date: String, course: Course) {
         let task = Task(context: DataController.context)

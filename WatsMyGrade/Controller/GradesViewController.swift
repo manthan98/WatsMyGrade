@@ -105,23 +105,25 @@ class GradesViewController: UIViewController {
         
         self.segmentedControl.addTarget(self, action: #selector(segmentSwap(_:)), for: .valueChanged)
         
-        // Constraints.
-        self.upperContainerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.upperContainerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.upperContainerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        // Constraints
+        self.upperContainerView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor)
         
-        self.stackView.leftAnchor.constraint(equalTo: self.upperContainerView.leftAnchor).isActive = true
-        self.stackView.topAnchor.constraint(equalTo: self.upperContainerView.topAnchor, constant: 15).isActive = true
-        self.stackView.rightAnchor.constraint(equalTo: self.upperContainerView.rightAnchor).isActive = true
-        self.stackView.bottomAnchor.constraint(equalTo: self.upperContainerView.bottomAnchor, constant: -15).isActive = true
-
-        self.segmentedControl.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
-        self.segmentedControl.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
+        self.stackView.anchor(top: self.upperContainerView.topAnchor,
+                              leading: self.upperContainerView.leadingAnchor,
+                              bottom: self.upperContainerView.bottomAnchor,
+                              trailing: self.upperContainerView.trailingAnchor,
+                              padding: .init(top: 15, left: 0, bottom: -15, right: 0))
         
-        self.tableView.topAnchor.constraint(equalTo: self.upperContainerView.bottomAnchor).isActive = true
-        self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.segmentedControl.anchor(top: nil,
+                                     leading: self.view.leadingAnchor,
+                                     bottom: nil,
+                                     trailing: self.view.trailingAnchor,
+                                     padding: .init(top: 0, left: 10, bottom: 0, right: -10))
+        
+        self.tableView.anchor(top: self.upperContainerView.bottomAnchor,
+                              leading: self.view.leadingAnchor,
+                              bottom: self.view.bottomAnchor,
+                              trailing: self.view.trailingAnchor)
     }
     
     private func getCourseGrade() {

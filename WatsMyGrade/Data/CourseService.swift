@@ -18,7 +18,7 @@ class CourseService {
     static var shared = CourseService()
     weak var delegate: CourseServiceDelegate?
     
-    var courses = [Course]()
+    private(set) var courses = [Course]()
     
     func createCourse(code: String, name: String, credits: Double, grade: Double) {
         let course = Course(context: DataController.context)

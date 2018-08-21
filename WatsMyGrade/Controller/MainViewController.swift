@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         CourseService.shared.getCourses()
         self.tableView.reloadData()
+        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses).rounded(toPlaces: 2)) %"
     }
     
     private func setup() {
@@ -80,29 +81,32 @@ class MainViewController: UIViewController {
         self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses)) %"
         self.containerView.backgroundColor = UIColor(hexString: "#F8F8F8")
         
-        // Add views.
+        self.tableView.backgroundColor = UIColor(hexString: "#F0F0F0")
+        self.tableView.separatorStyle = .none
+        
+        // Add views
         self.stackView.addArrangedSubview(self.overallGradeNameLabel)
         self.stackView.addArrangedSubview(self.overallGradeLabel)
         self.containerView.addSubview(self.stackView)
         self.view.addSubview(self.containerView)
         self.view.addSubview(tableView)
         
-        // Constraints.
-        self.containerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.containerView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.containerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        // Constraints
+        self.containerView.anchor(top: self.view.topAnchor,
+                                  leading: self.view.leadingAnchor,
+                                  bottom: nil,
+                                  trailing: self.view.trailingAnchor)
         
-        self.stackView.leftAnchor.constraint(equalTo: self.containerView.leftAnchor).isActive = true
-        self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
-        self.stackView.rightAnchor.constraint(equalTo: self.containerView.rightAnchor).isActive = true
-        self.stackView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor, constant: -15).isActive = true
+        self.stackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
+                              leading: self.containerView.leadingAnchor,
+                              bottom: self.containerView.bottomAnchor,
+                              trailing: self.containerView.trailingAnchor,
+                              padding: .init(top: 15, left: 0, bottom: -15, right: 0))
         
-        self.tableView.topAnchor.constraint(equalTo: self.containerView.bottomAnchor).isActive = true
-        self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        self.tableView.backgroundColor = UIColor(hexString: "#F0F0F0")
-        self.tableView.separatorStyle = .none
+        self.tableView.anchor(top: self.containerView.bottomAnchor,
+                              leading: self.view.leadingAnchor,
+                              bottom: self.view.bottomAnchor,
+                              trailing: self.view.trailingAnchor)
     }
     
     @objc private func add() {

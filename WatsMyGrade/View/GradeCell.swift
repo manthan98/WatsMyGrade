@@ -53,19 +53,24 @@ class GradeCell: UITableViewCell {
     }
     
     private func setup() {
+        // Add views
+        self.addSubview(self.weightLabel)
+        self.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.nameLabel)
         self.stackView.addArrangedSubview(self.gradeLabel)
-        self.addSubview(self.stackView)
-        self.addSubview(self.weightLabel)
         
-        // Constraints.
-        self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14).isActive = true
-        self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        // Constraints
+        self.stackView.anchor(top: self.topAnchor,
+                              leading: self.leadingAnchor,
+                              bottom: nil,
+                              trailing: self.trailingAnchor,
+                              padding: .init(top: 14, left: 10, bottom: 0, right: -10))
         
-        self.weightLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        self.weightLabel.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 14).isActive = true
-        self.weightLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        self.weightLabel.anchor(top: self.stackView.bottomAnchor,
+                                leading: self.leadingAnchor,
+                                bottom: nil,
+                                trailing: self.trailingAnchor,
+                                padding: .init(top: 14, left: 10, bottom: 0, right: -10))
     }
     
     func configureCell(grade: Grade) {

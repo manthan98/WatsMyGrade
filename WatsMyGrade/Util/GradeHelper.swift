@@ -12,7 +12,7 @@ class GradeHelper {
     
     static var shared = GradeHelper()
     
-    public func getFinalMark(grades: [Grade], course: Course) -> Double {
+    func getFinalMark(grades: [Grade], course: Course) -> Double {
         var top = 0.0
         var bottom = 0.0
         for i in grades.indices {
@@ -22,7 +22,7 @@ class GradeHelper {
         return (top / bottom)
     }
     
-    public func getOverallMark(courses: [Course]) -> Double {
+    func getOverallMark(courses: [Course]) -> Double {
         var average = 0.0
         for i in courses.indices {
             average = average + courses[i].grade

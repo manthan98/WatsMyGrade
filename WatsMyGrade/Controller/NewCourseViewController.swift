@@ -86,37 +86,44 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     
     private func setup() {
         self.view.backgroundColor = UIColor(hexString: "#F0F0F0")
+        
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Course"
         
-        // Add views.
-        self.view.addSubview(self.stackView)
-        self.stackView.addArrangedSubview(self.codeField)
-        self.stackView.addArrangedSubview(self.nameField)
-        self.stackView.addArrangedSubview(self.creditsField)
-        
-        // Constraints.
-        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true
-        self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.codeField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.codeField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.nameField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nameField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.creditsField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.creditsField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.submitButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 100).isActive = true
-        self.submitButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -100).isActive = true
-        self.submitButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 15.0).isActive = true
         self.submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         self.submitButton.setTitle("Submit", for: .normal)
         self.submitButton.setTitleColor(UIColor.white, for: .normal)
         self.submitButton.layer.cornerRadius = 7.0
         self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
+        
+        // Add views
+        self.view.addSubview(self.stackView)
+        self.view.addSubview(self.submitButton)
+        self.stackView.addArrangedSubview(self.codeField)
+        self.stackView.addArrangedSubview(self.nameField)
+        self.stackView.addArrangedSubview(self.creditsField)
+        
+        // Constraints
+        self.stackView.anchor(top: self.view.topAnchor,
+                              leading: self.view.leadingAnchor,
+                              bottom: nil,
+                              trailing: self.view.trailingAnchor,
+                              padding: .init(top: 200, left: 0, bottom: 0, right: 0))
+        
+        self.codeField.anchor(top: nil, leading: self.view.leadingAnchor,
+                              bottom: nil, trailing: self.view.trailingAnchor)
+        
+        self.nameField.anchor(top: nil, leading: self.view.leadingAnchor,
+                              bottom: nil, trailing: self.view.trailingAnchor)
+        
+        self.creditsField.anchor(top: nil, leading: self.view.leadingAnchor,
+                              bottom: nil, trailing: self.view.trailingAnchor)
+        
+        self.submitButton.anchor(top: self.stackView.bottomAnchor,
+                                 leading: self.view.leadingAnchor,
+                                 bottom: nil,
+                                 trailing: self.view.trailingAnchor,
+                                 padding: .init(top: 15, left: 100, bottom: 0, right: -100))
     }
     
     @objc private func submit() {

@@ -90,39 +90,44 @@ class EditTaskViewController: UIViewController {
         self.priorityField.text = self.task.priority
         self.dateField.text = self.task.date
         
-        // Add views.
-        self.view.addSubview(self.stackView)
-        self.stackView.addArrangedSubview(self.nameField)
-        self.stackView.addArrangedSubview(self.priorityField)
-        self.stackView.addArrangedSubview(self.dateField)
-        
         self.datePicker.datePickerMode = .date
         self.dateField.inputView = datePicker
         self.datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
-        // Constraints.
-        self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true
-        self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.nameField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nameField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.priorityField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.priorityField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.dateField.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.dateField.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        self.view.addSubview(self.submitButton)
-        self.submitButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 100).isActive = true
-        self.submitButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -100).isActive = true
-        self.submitButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 15.0).isActive = true
         self.submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
         self.submitButton.setTitle("Submit", for: .normal)
         self.submitButton.setTitleColor(UIColor.white, for: .normal)
         self.submitButton.layer.cornerRadius = 7.0
         self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
+        
+        // Add views
+        self.view.addSubview(self.stackView)
+        self.view.addSubview(self.submitButton)
+        self.stackView.addArrangedSubview(self.nameField)
+        self.stackView.addArrangedSubview(self.priorityField)
+        self.stackView.addArrangedSubview(self.dateField)
+        
+        // Constraints
+        self.stackView.anchor(top: self.view.topAnchor,
+                              leading: self.view.leadingAnchor,
+                              bottom: nil,
+                              trailing: self.view.trailingAnchor,
+                              padding: .init(top: 200, left: 0, bottom: 0, right: 0))
+        
+        self.nameField.anchor(top: nil, leading: self.view.leadingAnchor,
+                              bottom: nil, trailing: self.view.trailingAnchor)
+        
+        self.priorityField.anchor(top: nil, leading: self.view.leadingAnchor,
+                                  bottom: nil, trailing: self.view.trailingAnchor)
+        
+        self.dateField.anchor(top: nil, leading: self.view.leadingAnchor,
+                              bottom: nil, trailing: self.view.trailingAnchor)
+        
+        self.submitButton.anchor(top: self.stackView.bottomAnchor,
+                                 leading: self.view.leadingAnchor,
+                                 bottom: nil,
+                                 trailing: self.view.trailingAnchor,
+                                 padding: .init(top: 15, left: 100, bottom: 0, right: -100))
     }
     
     @objc private func submit() {

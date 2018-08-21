@@ -9,12 +9,10 @@
 import UIKit
 
 class ErrorHandler {
-    
     static func sendAlert(title: String, message: String, for viewController: UIViewController) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         viewController.present(alertController, animated: true, completion: nil)
     }
-    
 }
