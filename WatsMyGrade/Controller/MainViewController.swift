@@ -10,14 +10,83 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(CourseCell.self, forCellReuseIdentifier: "CourseCell")
+        
+        CourseService.shared.delegate = self
+        CourseService.shared.getCourses()
+        
+        setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        CourseService.shared.getCourses()
+        self.tableView.reloadData()
+        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses).rounded(toPlaces: 2)) %"
+    }
+    
+    // MARK: - Private
+    
+    private func setup() {
+        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#FFD54F")
+        self.navigationItem.title = "Courses"
+        let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        plusButton.accessibilityIdentifier = "newCoursePlusButton"
+        self.navigationItem.rightBarButtonItem = plusButton
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        
+        overallGradeNameLabel.text = "Overall Average"
+        overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses)) %"
+        
+        // Views
+        stackView.addArrangedSubview(overallGradeNameLabel)
+        stackView.addArrangedSubview(overallGradeLabel)
+        containerView.addSubview(stackView)
+        self.view.addSubview(containerView)
+        self.view.addSubview(tableView)
+        
+        // Constraints
+        containerView.anchor(top: self.view.topAnchor,
+                                  leading: self.view.leadingAnchor,
+                                  bottom: nil,
+                                  trailing: self.view.trailingAnchor)
+        
+        stackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
+                              leading: containerView.leadingAnchor,
+                              bottom: containerView.bottomAnchor,
+                              trailing: containerView.trailingAnchor,
+                              padding: .init(top: 15, left: 0, bottom: 15, right: 0))
+        
+        tableView.anchor(top: containerView.bottomAnchor,
+                              leading: self.view.leadingAnchor,
+                              bottom: self.view.bottomAnchor,
+                              trailing: self.view.trailingAnchor)
+    }
+    
+    @objc private func add() {
+        let newCourseViewController = NewCourseViewController(nibName: nil, bundle: nil)
+        self.navigationController?.pushViewController(newCourseViewController, animated: true)
+    }
+    
     private let tableView: UITableView = {
         let tv = UITableView()
+        tv.backgroundColor = UIColor(hexString: "#F0F0F0")
+        tv.separatorStyle = .singleLine
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
     }()
     
     private let containerView: UIView = {
         let view = UIView()
+        view.backgroundColor = UIColor(hexString: "#F8F8F8")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -45,81 +114,13 @@ class MainViewController: UIViewController {
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(CourseCell.self, forCellReuseIdentifier: "CourseCell")
-        
-        CourseService.shared.delegate = self
-        CourseService.shared.getCourses()
-        
-        setup()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        CourseService.shared.getCourses()
-        self.tableView.reloadData()
-        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses).rounded(toPlaces: 2)) %"
-    }
-    
-    private func setup() {
-        let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-        self.navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode = .always
-        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#FFD54F")
-        self.navigationItem.title = "Courses"
-        let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-        plusButton.accessibilityIdentifier = "newCoursePlusButton"
-        self.navigationItem.rightBarButtonItem = plusButton
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        
-        self.overallGradeNameLabel.text = "Overall Average"
-        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses)) %"
-        self.containerView.backgroundColor = UIColor(hexString: "#F8F8F8")
-        
-        self.tableView.backgroundColor = UIColor(hexString: "#F0F0F0")
-        self.tableView.separatorStyle = .none
-        
-        // Add views
-        self.stackView.addArrangedSubview(self.overallGradeNameLabel)
-        self.stackView.addArrangedSubview(self.overallGradeLabel)
-        self.containerView.addSubview(self.stackView)
-        self.view.addSubview(self.containerView)
-        self.view.addSubview(tableView)
-        
-        // Constraints
-        self.containerView.anchor(top: self.view.topAnchor,
-                                  leading: self.view.leadingAnchor,
-                                  bottom: nil,
-                                  trailing: self.view.trailingAnchor)
-        
-        self.stackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
-                              leading: self.containerView.leadingAnchor,
-                              bottom: self.containerView.bottomAnchor,
-                              trailing: self.containerView.trailingAnchor,
-                              padding: .init(top: 15, left: 0, bottom: -15, right: 0))
-        
-        self.tableView.anchor(top: self.containerView.bottomAnchor,
-                              leading: self.view.leadingAnchor,
-                              bottom: self.view.bottomAnchor,
-                              trailing: self.view.trailingAnchor)
-    }
-    
-    @objc private func add() {
-        let newCourseViewController = NewCourseViewController(nibName: nil, bundle: nil)
-        self.navigationController?.pushViewController(newCourseViewController, animated: true)
-    }
 
 }
 
 extension MainViewController: CourseServiceDelegate {
     func coursesLoaded() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
         }
     }
 }

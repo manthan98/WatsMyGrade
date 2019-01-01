@@ -10,73 +10,23 @@ import UIKit
 
 class EditGradeViewController: UIViewController {
     
-    var grade = Grade()
+    init(grade: Grade) {
+        self.grade = grade
+        
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private let nameField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Name"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    private let gradeField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Grade"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
-    
-    private let weightField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Weight"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
-    
-    private let submitButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("Button", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let stackView: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .vertical
-        sv.distribution = .equalSpacing
-        sv.alignment = .center
-        sv.spacing = 15
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        return sv
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setup()
     }
+    
+    // MARK: - Private
     
     private func setup() {
         self.view.backgroundColor = UIColor.init(hexString: "#F0F0F0")
@@ -84,44 +34,44 @@ class EditGradeViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "Edit Grade"
         
-        self.nameField.text = self.grade.name
-        self.gradeField.text = "\(self.grade.grade)"
-        self.weightField.text = "\(self.grade.weight)"
+        nameField.text = grade.name
+        gradeField.text = "\(grade.grade)"
+        weightField.text = "\(grade.weight)"
         
-        self.submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        self.submitButton.setTitle("Submit", for: .normal)
-        self.submitButton.setTitleColor(UIColor.white, for: .normal)
-        self.submitButton.layer.cornerRadius = 7.0
-        self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
-        
-        // Add views
-        self.view.addSubview(self.stackView)
-        self.view.addSubview(self.submitButton)
-        self.stackView.addArrangedSubview(self.nameField)
-        self.stackView.addArrangedSubview(self.gradeField)
-        self.stackView.addArrangedSubview(self.weightField)
+        // Views
+        self.view.addSubview(stackView)
+        self.view.addSubview(submitButton)
+        stackView.addArrangedSubview(nameField)
+        stackView.addArrangedSubview(gradeField)
+        stackView.addArrangedSubview(weightField)
         
         // Constraints
-        self.stackView.anchor(top: self.view.topAnchor,
-                              leading: self.view.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.view.trailingAnchor,
-                              padding: .init(top: 200, left: 0, bottom: 0, right: 0))
+        stackView.anchor(top: self.view.topAnchor,
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor,
+                         padding: .init(top: 200, left: 0, bottom: 0, right: 0))
         
-        self.nameField.anchor(top: nil, leading: self.view.leadingAnchor,
-                              bottom: nil, trailing: self.view.trailingAnchor)
+        nameField.anchor(top: nil,
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor)
         
-        self.gradeField.anchor(top: nil, leading: self.view.leadingAnchor,
-                               bottom: nil, trailing: self.view.trailingAnchor)
+        gradeField.anchor(top: nil,
+                          leading: self.view.leadingAnchor,
+                          bottom: nil,
+                          trailing: self.view.trailingAnchor)
         
-        self.weightField.anchor(top: nil, leading: self.view.leadingAnchor,
-                                bottom: nil, trailing: self.view.trailingAnchor)
+        weightField.anchor(top: nil,
+                           leading: self.view.leadingAnchor,
+                           bottom: nil,
+                           trailing: self.view.trailingAnchor)
         
-        self.submitButton.anchor(top: self.stackView.bottomAnchor,
-                                 leading: self.view.leadingAnchor,
-                                 bottom: nil,
-                                 trailing: self.view.trailingAnchor,
-                                 padding: .init(top: 15, left: 100, bottom: 0, right: -100))
+        submitButton.anchor(top: stackView.bottomAnchor,
+                            leading: self.view.leadingAnchor,
+                            bottom: nil,
+                            trailing: self.view.trailingAnchor,
+                            padding: .init(top: 15, left: 100, bottom: 0, right: 100))
     }
     
     @objc private func submit() {
@@ -136,5 +86,68 @@ class EditGradeViewController: UIViewController {
             }
         }
     }
+    
+    private let grade: Grade
+    
+    private let nameField: UITextField = {
+        let tf = UITextField(frame: .zero)
+        tf.borderStyle = .roundedRect
+        tf.textColor = UIColor.black
+        tf.font = UIFont(name: "AvenirNext", size: 17)
+        tf.placeholder = "Name"
+        tf.autocorrectionType = .yes
+        tf.keyboardType = .default
+        tf.clearButtonMode = .whileEditing
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    private let gradeField: UITextField = {
+        let tf = UITextField(frame: .zero)
+        tf.borderStyle = .roundedRect
+        tf.textColor = UIColor.black
+        tf.font = UIFont(name: "AvenirNext", size: 17)
+        tf.placeholder = "Grade"
+        tf.autocorrectionType = .yes
+        tf.keyboardType = .default
+        tf.clearButtonMode = .whileEditing
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    private let weightField: UITextField = {
+        let tf = UITextField(frame: .zero)
+        tf.borderStyle = .roundedRect
+        tf.textColor = UIColor.black
+        tf.font = UIFont(name: "AvenirNext", size: 17)
+        tf.placeholder = "Weight"
+        tf.autocorrectionType = .yes
+        tf.keyboardType = .default
+        tf.clearButtonMode = .whileEditing
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    private lazy var submitButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.black
+        button.addTarget(self, action: #selector(submit), for: .touchUpInside)
+        button.setTitle("Submit", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 7.0
+        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.distribution = .equalSpacing
+        sv.alignment = .center
+        sv.spacing = 15
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
 
 }

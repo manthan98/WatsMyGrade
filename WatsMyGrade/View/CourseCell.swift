@@ -10,6 +10,45 @@ import UIKit
 
 class CourseCell: UITableViewCell {
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setup()
+    }
+    
+    func configureCell(course: Course) {
+        self.codeLabel.text = course.code
+        self.nameLabel.text = course.name
+        self.gradeLabel.text = "\(course.grade) %"
+    }
+    
+    // MARK: - Private
+    
+    private func setup() {
+        // Views
+        self.addSubview(nameLabel)
+        self.addSubview(stackView)
+        stackView.addArrangedSubview(codeLabel)
+        stackView.addArrangedSubview(gradeLabel)
+        
+        // Constraints
+        stackView.anchor(top: self.topAnchor,
+                              leading: self.leadingAnchor,
+                              bottom: nil,
+                              trailing: self.trailingAnchor,
+                              padding: .init(top: 10, left: 10, bottom: 0, right: 10))
+        
+        nameLabel.anchor(top: self.stackView.bottomAnchor,
+                              leading: self.leadingAnchor,
+                              bottom: nil,
+                              trailing: self.trailingAnchor,
+                              padding: .init(top: 14, left: 10, bottom: 0, right: 10))
+    }
+    
     private let codeLabel: UILabel = {
         let cl = UILabel()
         cl.textAlignment = .left
@@ -41,42 +80,5 @@ class CourseCell: UITableViewCell {
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setup()
-    }
-    
-    private func setup() {
-        // Add views
-        self.addSubview(self.nameLabel)
-        self.addSubview(self.stackView)
-        stackView.addArrangedSubview(self.codeLabel)
-        stackView.addArrangedSubview(self.gradeLabel)
-        
-        // Constraints
-        self.stackView.anchor(top: self.topAnchor,
-                              leading: self.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.trailingAnchor,
-                              padding: .init(top: 10, left: 10, bottom: 0, right: -10))
-        
-        self.nameLabel.anchor(top: self.stackView.bottomAnchor,
-                              leading: self.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.trailingAnchor,
-                              padding: .init(top: 14, left: 10, bottom: 0, right: -10))
-    }
-    
-    func configureCell(course: Course) {
-        self.codeLabel.text = course.code
-        self.nameLabel.text = course.name
-        self.gradeLabel.text = "\(course.grade) %"
-    }
 
 }

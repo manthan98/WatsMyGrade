@@ -10,11 +10,12 @@ import UIKit
 
 class EditTaskViewController: UIViewController {
     
-    var task = Task()
+//    var task = Task()
+    
+    private let task: Task
     
     private let nameField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
+        let tf = UITextField(frame: .zero)
         tf.borderStyle = .roundedRect
         tf.textColor = UIColor.black
         tf.font = UIFont(name: "AvenirNext", size: 17)
@@ -27,8 +28,7 @@ class EditTaskViewController: UIViewController {
     }()
     
     private let priorityField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
+        let tf = UITextField(frame: .zero)
         tf.borderStyle = .roundedRect
         tf.textColor = UIColor.black
         tf.font = UIFont(name: "AvenirNext", size: 17)
@@ -41,8 +41,7 @@ class EditTaskViewController: UIViewController {
     }()
     
     private let dateField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
+        let tf = UITextField(frame: .zero)
         tf.borderStyle = .roundedRect
         tf.textColor = UIColor.black
         tf.font = UIFont(name: "AvenirNext", size: 17)
@@ -54,10 +53,15 @@ class EditTaskViewController: UIViewController {
         return tf
     }()
     
-    private let submitButton: UIButton = {
+    private lazy var submitButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.black
         button.setTitle("Button", for: .normal)
+        button.addTarget(self, action: #selector(submit), for: .touchUpInside)
+        button.setTitle("Submit", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 7.0
+        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -72,9 +76,25 @@ class EditTaskViewController: UIViewController {
         return sv
     }()
     
-    private let datePicker = UIDatePicker()
+    private lazy var datePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        dp.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        return dp
+    }()
+    
     private let dateFormatter = DateFormatter()
-
+    
+    init(task: Task) {
+        self.task = task
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -86,48 +106,46 @@ class EditTaskViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Task"
         
-        self.nameField.text = self.task.name
-        self.priorityField.text = self.task.priority
-        self.dateField.text = self.task.date
+        nameField.text = task.name
+        priorityField.text = task.priority
+        dateField.text = task.date
         
-        self.datePicker.datePickerMode = .date
-        self.dateField.inputView = datePicker
-        self.datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
-        
-        self.submitButton.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        self.submitButton.setTitle("Submit", for: .normal)
-        self.submitButton.setTitleColor(UIColor.white, for: .normal)
-        self.submitButton.layer.cornerRadius = 7.0
-        self.submitButton.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
+        dateField.inputView = datePicker
         
         // Add views
-        self.view.addSubview(self.stackView)
-        self.view.addSubview(self.submitButton)
-        self.stackView.addArrangedSubview(self.nameField)
-        self.stackView.addArrangedSubview(self.priorityField)
-        self.stackView.addArrangedSubview(self.dateField)
+        self.view.addSubview(stackView)
+        self.view.addSubview(submitButton)
+        stackView.addArrangedSubview(nameField)
+        stackView.addArrangedSubview(priorityField)
+        stackView.addArrangedSubview(dateField)
         
         // Constraints
-        self.stackView.anchor(top: self.view.topAnchor,
-                              leading: self.view.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.view.trailingAnchor,
-                              padding: .init(top: 200, left: 0, bottom: 0, right: 0))
+        stackView.anchor(top: self.view.topAnchor,
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor,
+                         padding: .init(top: 200, left: 0, bottom: 0, right: 0))
         
-        self.nameField.anchor(top: nil, leading: self.view.leadingAnchor,
-                              bottom: nil, trailing: self.view.trailingAnchor)
+        nameField.anchor(top: nil,
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor)
         
-        self.priorityField.anchor(top: nil, leading: self.view.leadingAnchor,
-                                  bottom: nil, trailing: self.view.trailingAnchor)
+        priorityField.anchor(top: nil,
+                             leading: self.view.leadingAnchor,
+                             bottom: nil,
+                             trailing: self.view.trailingAnchor)
         
-        self.dateField.anchor(top: nil, leading: self.view.leadingAnchor,
-                              bottom: nil, trailing: self.view.trailingAnchor)
+        dateField.anchor(top: nil,
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor)
         
-        self.submitButton.anchor(top: self.stackView.bottomAnchor,
-                                 leading: self.view.leadingAnchor,
-                                 bottom: nil,
-                                 trailing: self.view.trailingAnchor,
-                                 padding: .init(top: 15, left: 100, bottom: 0, right: -100))
+        submitButton.anchor(top: self.stackView.bottomAnchor,
+                            leading: self.view.leadingAnchor,
+                            bottom: nil,
+                            trailing: self.view.trailingAnchor,
+                            padding: .init(top: 15, left: 100, bottom: 0, right: 100))
     }
     
     @objc private func submit() {
@@ -142,9 +160,9 @@ class EditTaskViewController: UIViewController {
     }
     
     @objc private func datePickerValueChanged(_ sender: UIDatePicker) {
-        self.dateFormatter.dateStyle = .medium
-        self.dateFormatter.timeStyle = .none
-        self.dateField.text = dateFormatter.string(from: sender.date)
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateField.text = dateFormatter.string(from: sender.date)
     }
 
 }

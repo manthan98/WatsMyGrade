@@ -9,6 +9,51 @@
 import UIKit
 
 class GradeCell: UITableViewCell {
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setup()
+    }
+    
+    func configureCell(forGrade grade: Grade) {
+        nameLabel.text = grade.name
+        gradeLabel.text = "\(grade.grade) %"
+        weightLabel.text = "\(grade.weight)"
+    }
+    
+    func configureCell(forTask task: Task) {
+        nameLabel.text = task.name
+        gradeLabel.text = task.date
+        weightLabel.text = task.priority
+    }
+    
+    // MARK: - Private
+    
+    private func setup() {
+        // Views
+        self.addSubview(weightLabel)
+        self.addSubview(stackView)
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(gradeLabel)
+        
+        // Constraints
+        stackView.anchor(top: self.topAnchor,
+                              leading: self.leadingAnchor,
+                              bottom: nil,
+                              trailing: self.trailingAnchor,
+                              padding: .init(top: 14, left: 10, bottom: 0, right: 10))
+        
+        weightLabel.anchor(top: stackView.bottomAnchor,
+                                leading: self.leadingAnchor,
+                                bottom: nil,
+                                trailing: self.trailingAnchor,
+                                padding: .init(top: 14, left: 10, bottom: 0, right: 10))
+    }
     
     private let nameLabel: UILabel = {
         let nl = UILabel()
@@ -41,48 +86,5 @@ class GradeCell: UITableViewCell {
         s1.translatesAutoresizingMaskIntoConstraints = false
         return s1
     }()
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setup()
-    }
-    
-    private func setup() {
-        // Add views
-        self.addSubview(self.weightLabel)
-        self.addSubview(self.stackView)
-        self.stackView.addArrangedSubview(self.nameLabel)
-        self.stackView.addArrangedSubview(self.gradeLabel)
-        
-        // Constraints
-        self.stackView.anchor(top: self.topAnchor,
-                              leading: self.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.trailingAnchor,
-                              padding: .init(top: 14, left: 10, bottom: 0, right: -10))
-        
-        self.weightLabel.anchor(top: self.stackView.bottomAnchor,
-                                leading: self.leadingAnchor,
-                                bottom: nil,
-                                trailing: self.trailingAnchor,
-                                padding: .init(top: 14, left: 10, bottom: 0, right: -10))
-    }
-    
-    func configureCell(grade: Grade) {
-        self.nameLabel.text = grade.name
-        self.gradeLabel.text = "\(grade.grade) %"
-        self.weightLabel.text = "\(grade.weight)"
-    }
-    
-    func configureCell(task: Task) {
-        self.nameLabel.text = task.name
-        self.gradeLabel.text = task.date
-        self.weightLabel.text = task.priority
-    }
 
 }
