@@ -1,6 +1,0 @@
-framework module Pods_WatsMyGradeTests {
-  umbrella header "Pods-WatsMyGradeTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
