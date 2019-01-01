@@ -29,7 +29,7 @@ class EditGradeViewController: UIViewController {
     // MARK: - Private
     
     private func setup() {
-        self.view.backgroundColor = UIColor.init(hexString: "#F0F0F0")
+        self.view.backgroundColor = .wmg_grey
         
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "Edit Grade"
@@ -89,54 +89,24 @@ class EditGradeViewController: UIViewController {
     
     private let grade: Grade
     
-    private let nameField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Name"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let nameField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Name", padding: 5)
         return tf
     }()
     
-    private let gradeField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Grade"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let gradeField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Grade", padding: 5)
         return tf
     }()
     
-    private let weightField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Weight"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let weightField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Weight", padding: 5)
         return tf
     }()
     
-    private lazy var submitButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
+    private lazy var submitButton: WMGButton = {
+        let button = WMGButton(title: "Submit")
         button.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        button.setTitle("Submit", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 7.0
-        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

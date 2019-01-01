@@ -77,57 +77,24 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private let codeField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Code"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let codeField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Code", padding: 5)
         return tf
     }()
     
-    private let nameField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Name"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let nameField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Name", padding: 5)
         return tf
     }()
     
-    private let creditsField: UITextField = {
-        let textFrame = CGRect(x: 300, y: 300, width: 200, height: 30)
-        let tf = UITextField(frame: textFrame)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Credits"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let creditsField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Credits", padding: 5)
         return tf
     }()
     
-    private lazy var submitButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
+    private lazy var submitButton: WMGButton = {
+        let button = WMGButton(title: "Submit")
         button.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        button.setTitle("Submit", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 7.0
-        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

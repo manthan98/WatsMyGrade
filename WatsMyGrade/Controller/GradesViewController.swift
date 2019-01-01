@@ -92,7 +92,7 @@ class GradesViewController: UIViewController {
         if let course = course {
             switch (segmentedControl.selectedSegmentIndex) {
             case 0:
-                let grade = Double(GradeHelper.shared.getFinalMark(grades: GradeService.shared.grades, course: course)).rounded(toPlaces: 2)
+                let grade = Double(GradeHelper.shared.getFinalGrade(grades: GradeService.shared.grades, course: course)).rounded(toPlaces: 2)
                 self.gradeLabel.text = "\(grade) %"
                 CourseService.shared.updateCourse(code: course.code ?? "", name: course.name ?? "", credits: course.credits, grade: grade, course: course)
             case 1:

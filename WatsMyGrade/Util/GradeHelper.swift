@@ -12,22 +12,28 @@ class GradeHelper {
     
     static var shared = GradeHelper()
     
-    func getFinalMark(grades: [Grade], course: Course) -> Double {
+    func getFinalGrade(grades: [Grade], course: Course) -> Double {
         var top = 0.0
         var bottom = 0.0
-        for i in grades.indices {
-            top = top + (grades[i].grade * grades[i].weight)
-            bottom = bottom + grades[i].weight
+
+        grades.forEach { (grade) in
+            top = top + (grade.grade * grade.weight)
+            bottom = bottom + grade.weight
         }
-        return (top / bottom)
+        
+        return top / bottom
     }
     
-    func getOverallMark(courses: [Course]) -> Double {
+    func getOverallGrade() -> Double {
+        return CourseService.shared.courses.isEmpty ? 0.0 : getOverallGrade(courses: CourseService.shared.courses).rounded(toPlaces: 2)
+    }
+    
+    // MARK: - Private
+    
+    private func getOverallGrade(courses: [Course]) -> Double {
         var average = 0.0
-        for i in courses.indices {
-            average = average + courses[i].grade
-        }
-        return (average / Double(courses.count))
+        courses.forEach({ average = average + $0.grade })
+        return average / Double(courses.count)
     }
     
 }

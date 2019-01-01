@@ -29,7 +29,7 @@ class NewTaskViewController: UIViewController {
     // MARK: - Private
     
     private func setup() {
-        self.view.backgroundColor = UIColor.init(hexString: "#F0F0F0")
+        self.view.backgroundColor = .wmg_grey
         
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Task"
@@ -91,54 +91,24 @@ class NewTaskViewController: UIViewController {
     
     private let course: Course
     
-    private let nameField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Name"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let nameField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Name", padding: 5)
         return tf
     }()
     
-    private let priorityField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Priority"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let priorityField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Priority", padding: 5)
         return tf
     }()
     
-    private let dateField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Date"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
+    private let dateField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Date", padding: 5)
         return tf
     }()
     
-    private let submitButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
+    private lazy var submitButton: WMGButton = {
+        let button = WMGButton(title: "Submit")
         button.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        button.setTitle("Submit", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 7.0
-        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

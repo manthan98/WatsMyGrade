@@ -22,6 +22,8 @@
 		82642563205EFEFA00A8A130 /* NewCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642562205EFEFA00A8A130 /* NewCourseViewController.swift */; };
 		82642569205F132C00A8A130 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82642568205F132C00A8A130 /* UIColor.swift */; };
 		8264256B205F148F00A8A130 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264256A205F148F00A8A130 /* CourseCell.swift */; };
+		827E88FE21DC05300068DF23 /* WMGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E88FD21DC05300068DF23 /* WMGTextField.swift */; };
+		827E890021DC08080068DF23 /* WMGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E88FF21DC08080068DF23 /* WMGButton.swift */; };
 		82C4027220816F5800FD55DE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4027120816F5800FD55DE /* ErrorHandler.swift */; };
 		82C778A5212C6685007958EE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C778A4212C6685007958EE /* UIView.swift */; };
 		82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */; };
@@ -80,6 +82,8 @@
 		82642562205EFEFA00A8A130 /* NewCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCourseViewController.swift; sourceTree = "<group>"; };
 		82642568205F132C00A8A130 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8264256A205F148F00A8A130 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
+		827E88FD21DC05300068DF23 /* WMGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMGTextField.swift; sourceTree = "<group>"; };
+		827E88FF21DC08080068DF23 /* WMGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMGButton.swift; sourceTree = "<group>"; };
 		82C4027120816F5800FD55DE /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		82C778A4212C6685007958EE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGradeViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 			children = (
 				8264256A205F148F00A8A130 /* CourseCell.swift */,
 				82F0531020668FD200263DB4 /* GradeCell.swift */,
+				827E88FD21DC05300068DF23 /* WMGTextField.swift */,
+				827E88FF21DC08080068DF23 /* WMGButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -482,11 +488,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				82F0532120671DBF00263DB4 /* TaskService.swift in Sources */,
+				827E890021DC08080068DF23 /* WMGButton.swift in Sources */,
 				82F053232067276500263DB4 /* NewTaskViewController.swift in Sources */,
 				82F0531A20671D9F00263DB4 /* Course+CoreDataClass.swift in Sources */,
 				82F0531B20671D9F00263DB4 /* Course+CoreDataProperties.swift in Sources */,
 				82C4027220816F5800FD55DE /* ErrorHandler.swift in Sources */,
 				8221DCA7206332350017C1BA /* CourseService.swift in Sources */,
+				827E88FE21DC05300068DF23 /* WMGTextField.swift in Sources */,
 				82F0530F2065F8BA00263DB4 /* GradeService.swift in Sources */,
 				82F0531D20671D9F00263DB4 /* Task+CoreDataProperties.swift in Sources */,
 				8221DCA5206330F70017C1BA /* DataController.swift in Sources */,

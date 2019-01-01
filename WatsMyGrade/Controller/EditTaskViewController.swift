@@ -10,81 +10,6 @@ import UIKit
 
 class EditTaskViewController: UIViewController {
     
-//    var task = Task()
-    
-    private let task: Task
-    
-    private let nameField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Name"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
-    
-    private let priorityField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Priority"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
-    
-    private let dateField: UITextField = {
-        let tf = UITextField(frame: .zero)
-        tf.borderStyle = .roundedRect
-        tf.textColor = UIColor.black
-        tf.font = UIFont(name: "AvenirNext", size: 17)
-        tf.placeholder = "Weight"
-        tf.autocorrectionType = .yes
-        tf.keyboardType = .default
-        tf.clearButtonMode = .whileEditing
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
-    
-    private lazy var submitButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.black
-        button.setTitle("Button", for: .normal)
-        button.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        button.setTitle("Submit", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.layer.cornerRadius = 7.0
-        button.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let stackView: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .vertical
-        sv.distribution = .equalSpacing
-        sv.alignment = .center
-        sv.spacing = 15
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        return sv
-    }()
-    
-    private lazy var datePicker: UIDatePicker = {
-        let dp = UIDatePicker()
-        dp.datePickerMode = .date
-        dp.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
-        return dp
-    }()
-    
-    private let dateFormatter = DateFormatter()
-    
     init(task: Task) {
         self.task = task
         
@@ -101,8 +26,10 @@ class EditTaskViewController: UIViewController {
         setup()
     }
     
+    // MARK: - Private
+    
     private func setup() {
-        self.view.backgroundColor = UIColor.init(hexString: "#F0F0F0")
+        self.view.backgroundColor = .wmg_grey
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Task"
         
@@ -164,5 +91,47 @@ class EditTaskViewController: UIViewController {
         dateFormatter.timeStyle = .none
         dateField.text = dateFormatter.string(from: sender.date)
     }
+    
+    private let task: Task
+    
+    private let nameField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Name", padding: 5)
+        return tf
+    }()
+    
+    private let priorityField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Priority", padding: 5)
+        return tf
+    }()
+    
+    private let dateField: WMGTextField = {
+        let tf = WMGTextField(placeholder: "Date", padding: 5)
+        return tf
+    }()
+    
+    private lazy var submitButton: WMGButton = {
+        let button = WMGButton(title: "Submit")
+        button.addTarget(self, action: #selector(submit), for: .touchUpInside)
+        return button
+    }()
+    
+    private let stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.distribution = .equalSpacing
+        sv.alignment = .center
+        sv.spacing = 15
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
+    private lazy var datePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        dp.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        return dp
+    }()
+    
+    private let dateFormatter = DateFormatter()
 
 }

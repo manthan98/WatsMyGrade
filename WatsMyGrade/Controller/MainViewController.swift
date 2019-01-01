@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         CourseService.shared.getCourses()
         self.tableView.reloadData()
-        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses).rounded(toPlaces: 2)) %"
+        self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
     }
     
     // MARK: - Private
@@ -44,7 +44,7 @@ class MainViewController: UIViewController {
         self.navigationItem.rightBarButtonItem?.tintColor = .black
         
         overallGradeNameLabel.text = "Overall Average"
-        overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses)) %"
+        overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
         
         // Views
         stackView.addArrangedSubview(overallGradeNameLabel)
@@ -157,6 +157,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if (editingStyle == .delete) {
             CourseService.shared.deleteCourse(index: indexPath.row, course: CourseService.shared.courses[indexPath.row])
             self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
         }
     }
 }
