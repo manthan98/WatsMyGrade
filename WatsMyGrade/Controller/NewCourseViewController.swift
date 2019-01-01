@@ -24,9 +24,9 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Private
     
     private func setup() {
-        self.view.backgroundColor = UIColor(hexString: "#F0F0F0")
+        self.view.backgroundColor = .wmg_grey
         
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = .black
         self.navigationItem.title = "New Course"
         
         // Views

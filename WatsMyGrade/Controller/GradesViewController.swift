@@ -47,7 +47,7 @@ class GradesViewController: UIViewController {
     // MARK: - Private
     
     private func setup() {
-        self.view.backgroundColor = UIColor(hexString: "#F8F8F8")
+        self.view.backgroundColor = .wmg_lightGrey
         self.navigationController?.navigationBar.tintColor = UIColor.black
         let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         plusButton.accessibilityIdentifier = "newGradeOrTaskPlusButton"
@@ -124,7 +124,7 @@ class GradesViewController: UIViewController {
     
     private let upperContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexString: "#F8F8F8")
+        view.backgroundColor = .wmg_lightGrey
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -157,7 +157,7 @@ class GradesViewController: UIViewController {
         let items = ["Grades", "Tasks"]
         let sc = UISegmentedControl(items: items)
         sc.selectedSegmentIndex = 0
-        sc.tintColor = UIColor(hexString: "#787878")
+        sc.tintColor = .wmg_darkGrey
         sc.addTarget(self, action: #selector(segmentSwap(_:)), for: .valueChanged)
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
@@ -165,7 +165,7 @@ class GradesViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = UIColor(hexString: "#F0F0F0")
+        tv.backgroundColor = .wmg_grey
         tv.separatorStyle = .none
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv

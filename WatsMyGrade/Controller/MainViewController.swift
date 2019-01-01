@@ -36,12 +36,12 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .always
-        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#FFD54F")
+        self.navigationController?.navigationBar.barTintColor = .wmg_yellow
         self.navigationItem.title = "Courses"
         let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         plusButton.accessibilityIdentifier = "newCoursePlusButton"
         self.navigationItem.rightBarButtonItem = plusButton
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
         
         overallGradeNameLabel.text = "Overall Average"
         overallGradeLabel.text = "\(GradeHelper.shared.getOverallMark(courses: CourseService.shared.courses)) %"
@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = UIColor(hexString: "#F0F0F0")
+        tv.backgroundColor = .wmg_grey
         tv.separatorStyle = .singleLine
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
@@ -86,7 +86,7 @@ class MainViewController: UIViewController {
     
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hexString: "#F8F8F8")
+        view.backgroundColor = .wmg_lightGrey
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

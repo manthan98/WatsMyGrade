@@ -9,6 +9,13 @@
 import UIKit
 
 extension UIColor {
+    static let wmg_yellow = UIColor(hexString: "#FFD54F")
+    static let wmg_grey = UIColor(hexString: "#F0F0F0")
+    static let wmg_lightGrey = UIColor(hexString: "#F8F8F8")
+    static let wmg_darkGrey = UIColor(hexString: "#787878")
+}
+
+extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
