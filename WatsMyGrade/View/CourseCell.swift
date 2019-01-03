@@ -8,16 +8,28 @@
 
 import UIKit
 
-class CourseCell: UITableViewCell {
+class CourseCell: UICollectionViewCell {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = .white
+        
+        self.layer.cornerRadius = 12.0
+        self.layer.masksToBounds = true
+        
+        addDropShadow()
+        
+        setup()
+        
+        let deleteLabel2 = UILabel()
+        deleteLabel2.text = "delete"
+        deleteLabel2.textColor = UIColor.white
+        self.insertSubview(deleteLabel2, belowSubview: self.contentView)
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setup()
     }
     
     func configureCell(course: Course) {
@@ -37,16 +49,30 @@ class CourseCell: UITableViewCell {
         
         // Constraints
         stackView.anchor(top: self.topAnchor,
-                              leading: self.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.trailingAnchor,
-                              padding: .init(top: 10, left: 10, bottom: 0, right: 10))
+                         leading: self.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.trailingAnchor,
+                         padding: .init(top: 10, left: 10, bottom: 0, right: 10))
         
         nameLabel.anchor(top: self.stackView.bottomAnchor,
-                              leading: self.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.trailingAnchor,
-                              padding: .init(top: 14, left: 10, bottom: 0, right: 10))
+                         leading: self.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.trailingAnchor,
+                         padding: .init(top: 14, left: 10, bottom: 0, right: 10))
+    }
+    
+    private func addDropShadow() {
+        self.contentView.layer.cornerRadius = 12.0
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.layer.shadowRadius = 2.0
+        self.layer.shadowOpacity = 0.3
+        self.layer.masksToBounds = false
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
     
     private let codeLabel: UILabel = {
@@ -80,5 +106,5 @@ class CourseCell: UITableViewCell {
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
-
+    
 }

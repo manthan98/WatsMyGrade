@@ -64,6 +64,8 @@ class GradesViewController: UIViewController {
         
         self.view.addSubview(tableView)
         
+        self.view.addSubview(deleteButton)
+        
         // Constraints
         upperContainerView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
                                   leading: self.view.leadingAnchor,
@@ -82,10 +84,17 @@ class GradesViewController: UIViewController {
                                      trailing: self.view.trailingAnchor,
                                      padding: .init(top: 0, left: 10, bottom: 0, right: 10))
         
+        deleteButton.anchor(top: nil,
+                            leading: self.view.leadingAnchor,
+                            bottom: self.view.bottomAnchor,
+                            trailing: self.view.trailingAnchor,
+                            padding: .init(top: 0, left: 100, bottom: 15, right: 100))
+        
         tableView.anchor(top: upperContainerView.bottomAnchor,
                               leading: self.view.leadingAnchor,
-                              bottom: self.view.bottomAnchor,
-                              trailing: self.view.trailingAnchor)
+                              bottom: deleteButton.topAnchor,
+                              trailing: self.view.trailingAnchor,
+                              padding: .init(top: 0, left: 0, bottom: 15, right: 0))
     }
     
     private func getCourseGrade() {
@@ -103,7 +112,8 @@ class GradesViewController: UIViewController {
         }
     }
     
-    @objc private func add(_ sender: UIBarButtonItem) {
+    @objc
+    private func add(_ sender: UIBarButtonItem) {
         if let course = course {
             switch (segmentedControl.selectedSegmentIndex) {
             case 0:
@@ -118,8 +128,15 @@ class GradesViewController: UIViewController {
         }
     }
     
-    @objc private func segmentSwap(_ sender: UISegmentedControl) {
+    @objc
+    private func segmentSwap(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
+    }
+    
+    @objc
+    private func deleteCourse() {
+        NotificationCenter.default.post(name: NSNotification.Name.init("deleteCourse"), object: nil, userInfo: ["course": course!])
+        self.navigationController?.popViewController(animated: true)
     }
     
     private let upperContainerView: UIView = {
@@ -169,6 +186,13 @@ class GradesViewController: UIViewController {
         tv.separatorStyle = .none
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
+    }()
+    
+    private lazy var deleteButton: WMGButton = {
+        let button = WMGButton(title: "Delete Course")
+        button.backgroundColor = .red
+        button.addTarget(self, action: #selector(deleteCourse), for: .touchUpInside)
+        return button
     }()
 
 }

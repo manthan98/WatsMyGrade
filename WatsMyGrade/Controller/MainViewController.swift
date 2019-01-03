@@ -13,19 +13,21 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(CourseCell.self, forCellReuseIdentifier: "CourseCell")
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.register(CourseCell.self, forCellWithReuseIdentifier: "CourseCell")
         
         CourseService.shared.delegate = self
         CourseService.shared.getCourses()
         
         setup()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didDelete(_:)), name: NSNotification.Name.init("deleteCourse"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         CourseService.shared.getCourses()
-        self.tableView.reloadData()
+        self.collectionView.reloadData()
         self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
     }
     
@@ -51,7 +53,7 @@ class MainViewController: UIViewController {
         stackView.addArrangedSubview(overallGradeLabel)
         containerView.addSubview(stackView)
         self.view.addSubview(containerView)
-        self.view.addSubview(tableView)
+        self.view.addSubview(collectionView)
         
         // Constraints
         containerView.anchor(top: self.view.topAnchor,
@@ -65,23 +67,34 @@ class MainViewController: UIViewController {
                               trailing: containerView.trailingAnchor,
                               padding: .init(top: 15, left: 0, bottom: 15, right: 0))
         
-        tableView.anchor(top: containerView.bottomAnchor,
+        collectionView.anchor(top: containerView.bottomAnchor,
                               leading: self.view.leadingAnchor,
                               bottom: self.view.bottomAnchor,
                               trailing: self.view.trailingAnchor)
     }
     
-    @objc private func add() {
+    @objc
+    private func add() {
         let newCourseViewController = NewCourseViewController(nibName: nil, bundle: nil)
         self.navigationController?.pushViewController(newCourseViewController, animated: true)
     }
     
-    private let tableView: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = .wmg_grey
-        tv.separatorStyle = .singleLine
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
+    @objc
+    private func didDelete(_ notif: Notification) {
+        if let course = notif.userInfo?["course"] as? Course, let index = currentIndex {
+            CourseService.shared.deleteCourse(index: index, course: course)
+        }
+    }
+    
+    private var currentIndex: Int?
+    
+    private let collectionView: UICollectionView = {
+        let cvLayout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: cvLayout)
+        cv.alwaysBounceVertical = true
+        cv.backgroundColor = .wmg_grey
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
     }()
     
     private let containerView: UIView = {
@@ -120,45 +133,37 @@ class MainViewController: UIViewController {
 extension MainViewController: CourseServiceDelegate {
     func coursesLoaded() {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
+            self?.collectionView.reloadData()
         }
     }
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return CourseService.shared.courses.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let gradesViewController = GradesViewController(nibName: nil, bundle: nil)
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        gradesViewController.course = CourseService.shared.courses[indexPath.row]
-        self.navigationController?.pushViewController(gradesViewController, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath) as? CourseCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CourseCell", for: indexPath) as? CourseCell {
             cell.configureCell(course: CourseService.shared.courses[indexPath.row])
             return cell
         }
-        return UITableViewCell()
+        return UICollectionViewCell()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            CourseService.shared.deleteCourse(index: indexPath.row, course: CourseService.shared.courses[indexPath.row])
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-            self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width - 20, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let gradesViewController = GradesViewController(nibName: nil, bundle: nil)
+        gradesViewController.course = CourseService.shared.courses[indexPath.row]
+        self.navigationController?.pushViewController(gradesViewController, animated: true)
+        currentIndex = indexPath.row
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
     }
 }
 
