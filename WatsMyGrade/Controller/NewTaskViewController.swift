@@ -24,6 +24,7 @@ class NewTaskViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        setupLayout()
     }
     
     // MARK: - Private
@@ -35,8 +36,10 @@ class NewTaskViewController: UIViewController {
         self.navigationItem.title = "New Task"
         
         dateField.inputView = datePicker
-        
-        // Add views
+    }
+    
+    private func setupLayout() {
+        // Views
         self.view.addSubview(stackView)
         self.view.addSubview(submitButton)
         stackView.addArrangedSubview(nameField)

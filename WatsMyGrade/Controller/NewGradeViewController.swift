@@ -24,6 +24,7 @@ class NewGradeViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        setupLayout()
     }
     
     // MARK: - Private
@@ -33,7 +34,9 @@ class NewGradeViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "New Grade"
-        
+    }
+    
+    private func setupLayout() {
         // Views
         self.view.addSubview(stackView)
         self.view.addSubview(submitButton)
@@ -43,15 +46,15 @@ class NewGradeViewController: UIViewController {
         
         // Constraints
         stackView.anchor(top: self.view.topAnchor,
-                        leading: self.view.leadingAnchor,
-                        bottom: nil,
-                        trailing: self.view.trailingAnchor,
-                        padding: .init(top: 200, left: 0, bottom: 0, right: 0))
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor,
+                         padding: .init(top: 200, left: 0, bottom: 0, right: 0))
         
         nameField.anchor(top: nil,
-                        leading: self.view.leadingAnchor,
-                        bottom: nil,
-                        trailing: self.view.trailingAnchor)
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor)
         
         gradeField.anchor(top: nil,
                           leading: self.view.leadingAnchor,
@@ -70,7 +73,8 @@ class NewGradeViewController: UIViewController {
                             padding: .init(top: 15, left: 100, bottom: 0, right: 100))
     }
     
-    @objc private func submit() {
+    @objc
+    private func submit() {
         if let name = nameField.text, let grade = gradeField.text, let weight = weightField.text {
             if (name == "" || grade == "" || weight == "") {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)

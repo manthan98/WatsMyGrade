@@ -13,12 +13,8 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(codeField)
-        self.view.addSubview(nameField)
-        self.view.addSubview(creditsField)
-        self.view.addSubview(submitButton)
-        
         setup()
+        setupLayout()
     }
     
     // MARK: - Private
@@ -28,8 +24,14 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationItem.title = "New Course"
-        
+    }
+    
+    private func setupLayout() {
         // Views
+        self.view.addSubview(codeField)
+        self.view.addSubview(nameField)
+        self.view.addSubview(creditsField)
+        self.view.addSubview(submitButton)
         self.view.addSubview(stackView)
         self.view.addSubview(submitButton)
         stackView.addArrangedSubview(codeField)
@@ -38,10 +40,10 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
         
         // Constraints
         stackView.anchor(top: self.view.topAnchor,
-                              leading: self.view.leadingAnchor,
-                              bottom: nil,
-                              trailing: self.view.trailingAnchor,
-                              padding: .init(top: 200, left: 0, bottom: 0, right: 0))
+                         leading: self.view.leadingAnchor,
+                         bottom: nil,
+                         trailing: self.view.trailingAnchor,
+                         padding: .init(top: 200, left: 0, bottom: 0, right: 0))
         
         codeField.anchor(top: nil,
                          leading: self.view.leadingAnchor,

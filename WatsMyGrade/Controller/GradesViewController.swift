@@ -10,29 +10,22 @@ import UIKit
 
 class GradesViewController: UIViewController {
     
-    var course: Course? {
-        didSet {
-            guard let course = course else { return }
-            
-            self.navigationItem.title = course.code
-            courseLabel.text = course.name
-            gradeLabel.text = "\(course.grade) %"
-            
-            GradeService.shared.getGrades(course: course)
-            TaskService.shared.getTasks(course: course)
-        }
+    init(course: Course) {
+        self.course = course
+        
+        super.init(nibName: nil, bundle: nil)
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(GradeCell.self, forCellReuseIdentifier: "GradeCell")
-        
-        GradeService.shared.delegate = self
-        
         setup()
+        setupNavigation()
+        setupLayout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,13 +40,32 @@ class GradesViewController: UIViewController {
     // MARK: - Private
     
     private func setup() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(GradeCell.self, forCellReuseIdentifier: "GradeCell")
+        
+        GradeService.shared.delegate = self
+        
+        if let course = course {
+            self.navigationItem.title = course.code
+            courseLabel.text = course.name
+            gradeLabel.text = "\(course.grade) %"
+            
+            GradeService.shared.getGrades(course: course)
+            TaskService.shared.getTasks(course: course)
+        }
+    }
+    
+    private func setupNavigation() {
         self.view.backgroundColor = .wmg_lightGrey
         self.navigationController?.navigationBar.tintColor = UIColor.black
         let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         plusButton.accessibilityIdentifier = "newGradeOrTaskPlusButton"
         self.navigationItem.rightBarButtonItem = plusButton
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-        
+    }
+    
+    private func setupLayout() {
         // Views
         self.view.addSubview(upperContainerView)
         upperContainerView.addSubview(stackView)
@@ -73,16 +85,16 @@ class GradesViewController: UIViewController {
                                   trailing: self.view.trailingAnchor)
         
         stackView.anchor(top: upperContainerView.topAnchor,
-                              leading: upperContainerView.leadingAnchor,
-                              bottom: upperContainerView.bottomAnchor,
-                              trailing: upperContainerView.trailingAnchor,
-                              padding: .init(top: 15, left: 0, bottom: 15, right: 0))
+                         leading: upperContainerView.leadingAnchor,
+                         bottom: upperContainerView.bottomAnchor,
+                         trailing: upperContainerView.trailingAnchor,
+                         padding: .init(top: 15, left: 0, bottom: 15, right: 0))
         
         segmentedControl.anchor(top: nil,
-                                     leading: self.view.leadingAnchor,
-                                     bottom: nil,
-                                     trailing: self.view.trailingAnchor,
-                                     padding: .init(top: 0, left: 10, bottom: 0, right: 10))
+                                leading: self.view.leadingAnchor,
+                                bottom: nil,
+                                trailing: self.view.trailingAnchor,
+                                padding: .init(top: 0, left: 10, bottom: 0, right: 10))
         
         deleteButton.anchor(top: nil,
                             leading: self.view.leadingAnchor,
@@ -91,10 +103,10 @@ class GradesViewController: UIViewController {
                             padding: .init(top: 0, left: 100, bottom: 15, right: 100))
         
         tableView.anchor(top: upperContainerView.bottomAnchor,
-                              leading: self.view.leadingAnchor,
-                              bottom: deleteButton.topAnchor,
-                              trailing: self.view.trailingAnchor,
-                              padding: .init(top: 0, left: 0, bottom: 15, right: 0))
+                         leading: self.view.leadingAnchor,
+                         bottom: deleteButton.topAnchor,
+                         trailing: self.view.trailingAnchor,
+                         padding: .init(top: 0, left: 0, bottom: 15, right: 0))
     }
     
     private func getCourseGrade() {
@@ -138,6 +150,8 @@ class GradesViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name.init("deleteCourse"), object: nil, userInfo: ["course": course!])
         self.navigationController?.popViewController(animated: true)
     }
+    
+    private var course: Course?
     
     private let upperContainerView: UIView = {
         let view = UIView()

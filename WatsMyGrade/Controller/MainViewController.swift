@@ -13,19 +13,15 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.register(CourseCell.self, forCellWithReuseIdentifier: "CourseCell")
-        
-        CourseService.shared.delegate = self
-        CourseService.shared.getCourses()
-        
         setup()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(didDelete(_:)), name: NSNotification.Name.init("deleteCourse"), object: nil)
+        setupNavigation()
+        setupLayout()
+        setupNotifications()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         CourseService.shared.getCourses()
         self.collectionView.reloadData()
         self.overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
@@ -34,6 +30,15 @@ class MainViewController: UIViewController {
     // MARK: - Private
     
     private func setup() {
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.register(CourseCell.self, forCellWithReuseIdentifier: "CourseCell")
+        
+        CourseService.shared.delegate = self
+        CourseService.shared.getCourses()
+    }
+    
+    private func setupNavigation() {
         let textAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         self.navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -44,10 +49,9 @@ class MainViewController: UIViewController {
         plusButton.accessibilityIdentifier = "newCoursePlusButton"
         self.navigationItem.rightBarButtonItem = plusButton
         self.navigationItem.rightBarButtonItem?.tintColor = .black
-        
-        overallGradeNameLabel.text = "Overall Average"
-        overallGradeLabel.text = "\(GradeHelper.shared.getOverallGrade()) %"
-        
+    }
+    
+    private func setupLayout() {
         // Views
         stackView.addArrangedSubview(overallGradeNameLabel)
         stackView.addArrangedSubview(overallGradeLabel)
@@ -57,20 +61,24 @@ class MainViewController: UIViewController {
         
         // Constraints
         containerView.anchor(top: self.view.topAnchor,
-                                  leading: self.view.leadingAnchor,
-                                  bottom: nil,
-                                  trailing: self.view.trailingAnchor)
+                             leading: self.view.leadingAnchor,
+                             bottom: nil,
+                             trailing: self.view.trailingAnchor)
         
         stackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
-                              leading: containerView.leadingAnchor,
-                              bottom: containerView.bottomAnchor,
-                              trailing: containerView.trailingAnchor,
-                              padding: .init(top: 15, left: 0, bottom: 15, right: 0))
+                         leading: containerView.leadingAnchor,
+                         bottom: containerView.bottomAnchor,
+                         trailing: containerView.trailingAnchor,
+                         padding: .init(top: 15, left: 0, bottom: 15, right: 0))
         
         collectionView.anchor(top: containerView.bottomAnchor,
                               leading: self.view.leadingAnchor,
                               bottom: self.view.bottomAnchor,
                               trailing: self.view.trailingAnchor)
+    }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didDelete(_:)), name: NSNotification.Name.init("deleteCourse"), object: nil)
     }
     
     @objc
@@ -107,6 +115,7 @@ class MainViewController: UIViewController {
     private let overallGradeNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
+        label.text = "Overall Grade"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -114,6 +123,7 @@ class MainViewController: UIViewController {
     private let overallGradeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-UltraLight", size: 40)
+        label.text = "\(GradeHelper.shared.getOverallGrade()) %"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -130,15 +140,22 @@ class MainViewController: UIViewController {
 
 }
 
+// MARK: - CourseServiceDelegate
+
 extension MainViewController: CourseServiceDelegate {
+    
     func coursesLoaded() {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
     }
+    
 }
 
+// MARK: - UICollectionView
+
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return CourseService.shared.courses.count
     }
@@ -156,8 +173,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let gradesViewController = GradesViewController(nibName: nil, bundle: nil)
-        gradesViewController.course = CourseService.shared.courses[indexPath.row]
+        let gradesViewController = GradesViewController(course: CourseService.shared.courses[indexPath.row])
         self.navigationController?.pushViewController(gradesViewController, animated: true)
         currentIndex = indexPath.row
     }
@@ -165,5 +181,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
     }
+    
 }
 

@@ -24,6 +24,7 @@ class EditGradeViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        setupLayout()
     }
     
     // MARK: - Private
@@ -37,7 +38,9 @@ class EditGradeViewController: UIViewController {
         nameField.text = grade.name
         gradeField.text = "\(grade.grade)"
         weightField.text = "\(grade.weight)"
-        
+    }
+    
+    private func setupLayout() {
         // Views
         self.view.addSubview(stackView)
         self.view.addSubview(submitButton)
