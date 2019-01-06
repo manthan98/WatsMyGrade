@@ -8,9 +8,10 @@
 
 import UIKit
 
-class EditGradeViewController: UIViewController {
+class EditGradeViewController: AddEditViewController {
     
-    init(grade: Grade) {
+    init(index: Int, grade: Grade) {
+        self.index = index
         self.grade = grade
         
         super.init(nibName: nil, bundle: nil)
@@ -22,63 +23,28 @@ class EditGradeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setup()
-        setupLayout()
     }
     
-    // MARK: - Private
-    
-    private func setup() {
-        self.view.backgroundColor = .wmg_grey
+    override func setup() {
+        super.setup()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.title = "Edit Grade"
         
-        nameField.text = grade.name
-        gradeField.text = "\(grade.grade)"
-        weightField.text = "\(grade.weight)"
+        deleteButton.isHidden = false
+        
+        textFieldOne.placeholder = "Name"
+        textFieldTwo.placeholder = "Grade"
+        textFieldThree.placeholder = "Weight"
+        
+        textFieldOne.text = grade.name
+        textFieldTwo.text = "\(grade.grade)"
+        textFieldThree.text = "\(grade.weight)"
     }
     
-    private func setupLayout() {
-        // Views
-        self.view.addSubview(stackView)
-        self.view.addSubview(submitButton)
-        stackView.addArrangedSubview(nameField)
-        stackView.addArrangedSubview(gradeField)
-        stackView.addArrangedSubview(weightField)
+    override func submitPressed() {
+        super.submitPressed()
         
-        // Constraints
-        stackView.anchor(top: self.view.topAnchor,
-                         leading: self.view.leadingAnchor,
-                         bottom: nil,
-                         trailing: self.view.trailingAnchor,
-                         padding: .init(top: 200, left: 0, bottom: 0, right: 0))
-        
-        nameField.anchor(top: nil,
-                         leading: self.view.leadingAnchor,
-                         bottom: nil,
-                         trailing: self.view.trailingAnchor)
-        
-        gradeField.anchor(top: nil,
-                          leading: self.view.leadingAnchor,
-                          bottom: nil,
-                          trailing: self.view.trailingAnchor)
-        
-        weightField.anchor(top: nil,
-                           leading: self.view.leadingAnchor,
-                           bottom: nil,
-                           trailing: self.view.trailingAnchor)
-        
-        submitButton.anchor(top: stackView.bottomAnchor,
-                            leading: self.view.leadingAnchor,
-                            bottom: nil,
-                            trailing: self.view.trailingAnchor,
-                            padding: .init(top: 15, left: 100, bottom: 0, right: 100))
-    }
-    
-    @objc private func submit() {
-        if let mark = gradeField.text, let name = nameField.text, let weight = weightField.text {
+        if let name = textFieldOne.text, let mark = textFieldTwo.text, let weight = textFieldThree.text {
             if (mark == "" || name == "" || weight == "") {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
@@ -90,37 +56,17 @@ class EditGradeViewController: UIViewController {
         }
     }
     
+    override func deletePressed() {
+        super.deletePressed()
+        
+        GradeService.shared.deleteGrade(index: index, grade: grade)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Private
+    
     private let grade: Grade
     
-    private let nameField: WMGTextField = {
-        let tf = WMGTextField(placeholder: "Name", padding: 5)
-        return tf
-    }()
+    private let index: Int
     
-    private let gradeField: WMGTextField = {
-        let tf = WMGTextField(placeholder: "Grade", padding: 5)
-        return tf
-    }()
-    
-    private let weightField: WMGTextField = {
-        let tf = WMGTextField(placeholder: "Weight", padding: 5)
-        return tf
-    }()
-    
-    private lazy var submitButton: WMGButton = {
-        let button = WMGButton(title: "Submit")
-        button.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        return button
-    }()
-    
-    private let stackView: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .vertical
-        sv.distribution = .equalSpacing
-        sv.alignment = .center
-        sv.spacing = 15
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        return sv
-    }()
-
 }
