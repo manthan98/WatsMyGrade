@@ -34,15 +34,17 @@ class GradesViewController: UIViewController {
         if let course = course {
             GradeService.shared.getGrades(course: course)
             TaskService.shared.getTasks(course: course)
+            
+            getCourseGrade()
         }
     }
     
     // MARK: - Private
     
     private func setup() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(GradeCell.self, forCellReuseIdentifier: "GradeCell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(GradeCell.self, forCellWithReuseIdentifier: "GradeCell")
         
         GradeService.shared.delegate = self
         
@@ -74,7 +76,7 @@ class GradesViewController: UIViewController {
         stackView.addArrangedSubview(gradeLabel)
         stackView.addArrangedSubview(segmentedControl)
         
-        self.view.addSubview(tableView)
+        self.view.addSubview(collectionView)
         
         self.view.addSubview(deleteButton)
         
@@ -102,7 +104,7 @@ class GradesViewController: UIViewController {
                             trailing: self.view.trailingAnchor,
                             padding: .init(top: 0, left: 100, bottom: 15, right: 100))
         
-        tableView.anchor(top: upperContainerView.bottomAnchor,
+        collectionView.anchor(top: upperContainerView.bottomAnchor,
                          leading: self.view.leadingAnchor,
                          bottom: deleteButton.topAnchor,
                          trailing: self.view.trailingAnchor,
@@ -142,7 +144,7 @@ class GradesViewController: UIViewController {
     
     @objc
     private func segmentSwap(_ sender: UISegmentedControl) {
-        self.tableView.reloadData()
+        self.collectionView.reloadData()
     }
     
     @objc
@@ -194,12 +196,13 @@ class GradesViewController: UIViewController {
         return sc
     }()
     
-    private let tableView: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = .wmg_grey
-        tv.separatorStyle = .none
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
+    private let collectionView: UICollectionView = {
+        let cvLayout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: cvLayout)
+        cv.alwaysBounceVertical = true
+        cv.backgroundColor = .wmg_lightGrey
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
     }()
     
     private lazy var deleteButton: WMGButton = {
@@ -214,9 +217,9 @@ class GradesViewController: UIViewController {
 extension GradesViewController: GradeServiceDelegate {
     func gradesLoaded() {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
+            self?.collectionView.reloadData()
             
-            if let isEmpty = self?.tableView.visibleCells.isEmpty {
+            if let isEmpty = self?.collectionView.visibleCells.isEmpty {
                 if !isEmpty {
                     self?.getCourseGrade()
                 }
@@ -225,16 +228,9 @@ extension GradesViewController: GradeServiceDelegate {
     }
 }
 
-extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
+extension GradesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             return GradeService.shared.grades.count
@@ -245,23 +241,8 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (segmentedControl.selectedSegmentIndex) {
-        case 0:
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let editGradeViewController = EditGradeViewController(grade: GradeService.shared.grades[indexPath.row])
-            self.navigationController?.pushViewController(editGradeViewController, animated: true)
-        case 1:
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let editTaskViewController = EditTaskViewController(task: TaskService.shared.tasks[indexPath.row])
-            self.navigationController?.pushViewController(editTaskViewController, animated: true)
-        default:
-            break
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "GradeCell", for: indexPath) as? GradeCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GradeCell", for: indexPath) as? GradeCell {
             switch (segmentedControl.selectedSegmentIndex) {
             case 0:
                 cell.configureCell(forGrade: GradeService.shared.grades[indexPath.row])
@@ -272,22 +253,28 @@ extension GradesViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         }
-        return UITableViewCell()
+        return UICollectionViewCell()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            switch (segmentedControl.selectedSegmentIndex) {
-            case 0:
-                GradeService.shared.deleteGrade(index: indexPath.row, grade: GradeService.shared.grades[indexPath.row])
-                self.getCourseGrade()
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            case 1:
-                TaskService.shared.deleteTask(index: indexPath.row, task: TaskService.shared.tasks[indexPath.row])
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            default:
-                break
-            }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            let editGradeViewController = EditGradeViewController(index: indexPath.row, grade: GradeService.shared.grades[indexPath.row])
+            self.navigationController?.pushViewController(editGradeViewController, animated: true)
+        case 1:
+            let editTaskViewController = EditTaskViewController(index: indexPath.row,task: TaskService.shared.tasks[indexPath.row])
+            self.navigationController?.pushViewController(editTaskViewController, animated: true)
+        default:
+            break
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width - 20, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+    }
+    
 }

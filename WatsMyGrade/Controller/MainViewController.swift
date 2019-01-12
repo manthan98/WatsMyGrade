@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
                              leading: self.view.leadingAnchor,
                              bottom: nil,
                              trailing: self.view.trailingAnchor)
-        
+
         stackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
                          leading: containerView.leadingAnchor,
                          bottom: containerView.bottomAnchor,
@@ -100,7 +100,7 @@ class MainViewController: UIViewController {
         let cvLayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: cvLayout)
         cv.alwaysBounceVertical = true
-        cv.backgroundColor = .wmg_grey
+        cv.backgroundColor = .wmg_lightGrey
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()

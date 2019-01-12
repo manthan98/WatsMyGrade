@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewGradeViewController: UIViewController {
+class NewGradeViewController: AddEditViewController {
     
     init(course: Course) {
         self.course = course
@@ -22,60 +22,22 @@ class NewGradeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setup()
-        setupLayout()
     }
     
-    // MARK: - Private
-    
-    private func setup() {
-        self.view.backgroundColor = .wmg_grey
+    override func setup() {
+        super.setup()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        textFieldOne.placeholder = "Name"
+        textFieldTwo.placeholder = "Grade"
+        textFieldThree.placeholder = "Weight"
+        
         self.navigationItem.title = "New Grade"
     }
     
-    private func setupLayout() {
-        // Views
-        self.view.addSubview(stackView)
-        self.view.addSubview(submitButton)
-        stackView.addArrangedSubview(nameField)
-        stackView.addArrangedSubview(gradeField)
-        stackView.addArrangedSubview(weightField)
+    override func submitPressed() {
+        super.submitPressed()
         
-        // Constraints
-        stackView.anchor(top: self.view.topAnchor,
-                         leading: self.view.leadingAnchor,
-                         bottom: nil,
-                         trailing: self.view.trailingAnchor,
-                         padding: .init(top: 200, left: 0, bottom: 0, right: 0))
-        
-        nameField.anchor(top: nil,
-                         leading: self.view.leadingAnchor,
-                         bottom: nil,
-                         trailing: self.view.trailingAnchor)
-        
-        gradeField.anchor(top: nil,
-                          leading: self.view.leadingAnchor,
-                          bottom: nil,
-                          trailing: self.view.trailingAnchor)
-        
-        weightField.anchor(top: nil,
-                           leading: self.view.leadingAnchor,
-                           bottom: nil,
-                           trailing: self.view.trailingAnchor)
-        
-        submitButton.anchor(top: self.stackView.bottomAnchor,
-                            leading: self.view.leadingAnchor,
-                            bottom: nil,
-                            trailing: self.view.trailingAnchor,
-                            padding: .init(top: 15, left: 100, bottom: 0, right: 100))
-    }
-    
-    @objc
-    private func submit() {
-        if let name = nameField.text, let grade = gradeField.text, let weight = weightField.text {
+        if let name = textFieldOne.text, let grade = textFieldTwo.text, let weight = textFieldThree.text {
             if (name == "" || grade == "" || weight == "") {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
@@ -87,37 +49,8 @@ class NewGradeViewController: UIViewController {
         }
     }
     
+    // MARK: - Private
+    
     private let course: Course
-    
-    private let nameField: WMGTextField = {
-        let tf = WMGTextField(placeholder: "Name", padding: 5)
-        return tf
-    }()
-    
-    private let gradeField: WMGTextField = {
-        let tf = WMGTextField(placeholder: "Grade", padding: 5)
-        return tf
-    }()
-    
-    private let weightField: WMGTextField = {
-        let tf = WMGTextField(placeholder: "Weight", padding: 5)
-        return tf
-    }()
-    
-    private lazy var submitButton: WMGButton = {
-        let button = WMGButton(title: "Submit")
-        button.addTarget(self, action: #selector(submit), for: .touchUpInside)
-        return button
-    }()
-    
-    private let stackView: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .vertical
-        sv.distribution = .equalSpacing
-        sv.alignment = .center
-        sv.spacing = 15
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        return sv
-    }()
 
 }
