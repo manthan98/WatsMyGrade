@@ -43,7 +43,14 @@ class NewGradeViewController: AddEditViewController {
             } else {
                 guard let grade = Double(grade) else { return }
                 guard let weight = Double(weight) else { return }
-                GradeService.shared.createGrade(name: name, mark: grade, weight: weight, course: course)
+                guard let networkID = course.networkID else { return }
+                
+                NetworkManager.shared.createGrade(name: name, grade: grade, weight: weight, courseID: networkID) { (success) in
+                    if success {
+                        GradeService.shared.createGrade(name: name, mark: grade, weight: weight, course: self.course)
+                    }
+                }
+                
                 self.navigationController?.popViewController(animated: true)
             }
         }

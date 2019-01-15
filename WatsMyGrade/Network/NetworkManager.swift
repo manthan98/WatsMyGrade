@@ -14,6 +14,8 @@ let getCoursesURL = "\(baseURL)/course"
 let updateCourseURL = "\(baseURL)/course/update"
 let deleteCourseURL = "\(baseURL)/course/delete"
 
+let createGradeURL = "\(baseURL)/grade/add"
+
 protocol NetworkManagerDelegate: class {
     func coursesLoaded()
 }
@@ -144,6 +146,46 @@ class NetworkManager {
         
         task.resume()
         session.finishTasksAndInvalidate()
+    }
+    
+    func createGrade(name: String, grade: Double, weight: Double, courseID: String, completion: @escaping (_ success: Bool) -> ()) {
+        let json: [String:Any] = [
+            "name": name,
+            "grade": grade,
+            "weight": weight
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            
+            let sessionConfig = URLSessionConfiguration.default
+            let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
+            
+            guard let url = URL(string: "\(createGradeURL)/\(courseID)") else { return }
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+                if error == nil {
+                    guard let response = response as? HTTPURLResponse else { return }
+                    let statusCode = response.statusCode
+                    
+                    print("URL session task succeeded: HTTP \(statusCode)")
+                    
+                    completion(statusCode != 200 ? false : true)
+                } else {
+                    print("URL session task failed: \(error.debugDescription)")
+                    completion(false)
+                }
+            }
+            
+            task.resume()
+            session.finishTasksAndInvalidate()
+        } catch let err {
+            print(err)
+        }
     }
     
 }
