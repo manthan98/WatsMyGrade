@@ -20,12 +20,13 @@ class CourseService {
     
     private(set) var courses = [Course]()
     
-    func createCourse(code: String, name: String, credits: Double, grade: Double) {
+    func createCourse(code: String, name: String, credits: Double, grade: Double, id: String?) {
         let course = Course(context: DataController.context)
         course.code = code
         course.name = name
         course.grade = grade
         course.credits = credits
+        course.networkID = id ?? ""
         DataController.saveContext()
         self.courses.append(course)
     }

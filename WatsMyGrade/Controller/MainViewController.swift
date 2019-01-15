@@ -90,6 +90,7 @@ class MainViewController: UIViewController {
     @objc
     private func didDelete(_ notif: Notification) {
         if let course = notif.userInfo?["course"] as? Course, let index = currentIndex {
+            NetworkManager.shared.deleteCourse(networkID: course.networkID!)
             CourseService.shared.deleteCourse(index: index, course: course)
         }
     }

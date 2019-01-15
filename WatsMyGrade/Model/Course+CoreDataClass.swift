@@ -25,9 +25,13 @@ extension Course {
                     guard let name = course["name"] as? String else { return }
                     guard let code = course["code"] as? String else { return }
                     guard let credits = course["credits"] as? Double else { return }
-                    guard let grade = course["grade"] as? Double else { return }
+                    guard let networkID = course["_id"] as? String else { return }
                     
-                    CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: grade)
+                    if let grade = course["grade"] as? Double {
+                        CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: grade, id: networkID)
+                    } else {
+                        CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0, id: networkID)
+                    }
                 }
             }
         } catch let err {

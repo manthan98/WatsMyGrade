@@ -2,8 +2,8 @@
 //  Course+CoreDataProperties.swift
 //  WatsMyGrade
 //
-//  Created by Manthan Shah on 2018-03-24.
-//  Copyright © 2018 Manthan Shah. All rights reserved.
+//  Created by Manthan Shah on 2019-01-14.
+//  Copyright © 2019 Manthan Shah. All rights reserved.
 //
 //
 
@@ -21,6 +21,7 @@ extension Course {
     @NSManaged public var credits: Double
     @NSManaged public var grade: Double
     @NSManaged public var name: String?
+    @NSManaged public var networkID: String?
     @NSManaged public var grades: NSSet?
     @NSManaged public var tasks: Task?
 

@@ -76,7 +76,7 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
                 
                 NetworkManager.shared.createCourse(name, credits: credits, code: code) { (success) in
                     if success {
-                        CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)
+                        CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0, id: nil)
                     }
                 }
                 
