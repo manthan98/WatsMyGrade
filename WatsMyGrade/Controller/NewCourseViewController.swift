@@ -81,9 +81,6 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 self.navigationController?.popViewController(animated: true)
-                
-//                CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)
-//                self.navigationController?.popViewController(animated: true)
             }
         }
     }

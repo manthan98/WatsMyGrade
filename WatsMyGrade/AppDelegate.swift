@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+        
+        CourseService.shared.clearCourses()
+        NetworkManager.shared.getCourses()
     
         return true
     }

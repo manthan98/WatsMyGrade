@@ -58,4 +58,15 @@ class CourseService {
         DataController.saveContext()
     }
     
+    func clearCourses() {
+        do {
+            let coursesFetchRequest = NSFetchRequest<Course>(entityName: "Course")
+            let courses = try DataController.context.fetch(coursesFetchRequest)
+            courses.forEach({ DataController.context.delete($0) })
+            DataController.saveContext()
+        } catch let err {
+            print(err)
+        }
+    }
+    
 }
