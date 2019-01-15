@@ -73,8 +73,17 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
                 ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
             } else {
                 guard let credits = Double(credits) else { return }
-                CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)
+                
+                NetworkManager.shared.createCourse(name, credits: credits, code: code) { (success) in
+                    if success {
+                        CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)
+                    }
+                }
+                
                 self.navigationController?.popViewController(animated: true)
+                
+//                CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)
+//                self.navigationController?.popViewController(animated: true)
             }
         }
     }

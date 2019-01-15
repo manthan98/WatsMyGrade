@@ -25,6 +25,7 @@
 		8264256B205F148F00A8A130 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264256A205F148F00A8A130 /* CourseCell.swift */; };
 		827E88FE21DC05300068DF23 /* WMGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E88FD21DC05300068DF23 /* WMGTextField.swift */; };
 		827E890021DC08080068DF23 /* WMGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E88FF21DC08080068DF23 /* WMGButton.swift */; };
+		82C2469F21ED65D7001FE78A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C2469E21ED65D7001FE78A /* NetworkManager.swift */; };
 		82C4027220816F5800FD55DE /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4027120816F5800FD55DE /* ErrorHandler.swift */; };
 		82C778A5212C6685007958EE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C778A4212C6685007958EE /* UIView.swift */; };
 		82F0530D2065F66C00263DB4 /* NewGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */; };
@@ -86,6 +87,7 @@
 		8264256A205F148F00A8A130 /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		827E88FD21DC05300068DF23 /* WMGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMGTextField.swift; sourceTree = "<group>"; };
 		827E88FF21DC08080068DF23 /* WMGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMGButton.swift; sourceTree = "<group>"; };
+		82C2469E21ED65D7001FE78A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		82C4027120816F5800FD55DE /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		82C778A4212C6685007958EE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		82F0530C2065F66C00263DB4 /* NewGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGradeViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				82642567205F131D00A8A130 /* Util */,
+				82C2469D21ED65C3001FE78A /* Network */,
 				8221DCA3206330E30017C1BA /* Data */,
 				82642566205F130700A8A130 /* Model */,
 				82642565205F130300A8A130 /* View */,
@@ -255,6 +258,14 @@
 				82F053262067350E00263DB4 /* GradeHelper.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		82C2469D21ED65C3001FE78A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				82C2469E21ED65D7001FE78A /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +513,7 @@
 				82F0531D20671D9F00263DB4 /* Task+CoreDataProperties.swift in Sources */,
 				8221DCA5206330F70017C1BA /* DataController.swift in Sources */,
 				8264256B205F148F00A8A130 /* CourseCell.swift in Sources */,
+				82C2469F21ED65D7001FE78A /* NetworkManager.swift in Sources */,
 				82F0531E20671D9F00263DB4 /* Grade+CoreDataClass.swift in Sources */,
 				82F053292067365D00263DB4 /* Double.swift in Sources */,
 				821D8A7521E1895800D1690E /* AddEditViewController.swift in Sources */,
