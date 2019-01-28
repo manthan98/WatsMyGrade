@@ -34,6 +34,8 @@ class MainViewController: UIViewController {
         self.collectionView.dataSource = self
         self.collectionView.register(CourseCell.self, forCellWithReuseIdentifier: "CourseCell")
         
+        self.view.backgroundColor = .wmg_lightGrey
+        
         CourseService.shared.delegate = self
         CourseService.shared.getCourses()
     }
@@ -60,12 +62,13 @@ class MainViewController: UIViewController {
         self.view.addSubview(collectionView)
         
         // Constraints
-        containerView.anchor(top: self.view.topAnchor,
+        containerView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
                              leading: self.view.leadingAnchor,
                              bottom: nil,
-                             trailing: self.view.trailingAnchor)
+                             trailing: self.view.trailingAnchor,
+                             padding: .init(top: 10, left: 10, bottom: 0, right: 10))
 
-        stackView.anchor(top: self.view.safeAreaLayoutGuide.topAnchor,
+        stackView.anchor(top: containerView.topAnchor,
                          leading: containerView.leadingAnchor,
                          bottom: containerView.bottomAnchor,
                          trailing: containerView.trailingAnchor,
@@ -107,7 +110,9 @@ class MainViewController: UIViewController {
     
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .wmg_lightGrey
+        view.backgroundColor = .wmg_grey
+        view.layer.cornerRadius = 7.0
+        view.layer.masksToBounds = false
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
