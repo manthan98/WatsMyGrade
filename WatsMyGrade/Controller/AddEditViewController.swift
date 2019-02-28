@@ -19,7 +19,6 @@ class AddEditViewController: UIViewController {
     
     func setup() {
         self.view.backgroundColor = .wmg_grey
-        
         self.navigationController?.navigationBar.tintColor = UIColor.black
     }
     

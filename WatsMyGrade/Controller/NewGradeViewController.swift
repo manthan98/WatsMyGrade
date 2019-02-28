@@ -39,7 +39,7 @@ class NewGradeViewController: AddEditViewController {
         
         if let name = textFieldOne.text, let grade = textFieldTwo.text, let weight = textFieldThree.text {
             if (name == "" || grade == "" || weight == "") {
-                ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
+                ErrorHandler.sendAlert(title: ErrorStrings.defaultTitle.rawValue, message: ErrorStrings.defaultMessage.rawValue, for: self)
             } else {
                 guard let grade = Double(grade) else { return }
                 guard let weight = Double(weight) else { return }

@@ -70,7 +70,7 @@ class NewCourseViewController: UIViewController, UITextFieldDelegate {
     @objc private func submit() {
         if let code = codeField.text, let name = nameField.text, let credits = creditsField.text {
             if (code == "" || name == "" || credits == "") {
-                ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
+                ErrorHandler.sendAlert(title: ErrorStrings.defaultTitle.rawValue, message: ErrorStrings.defaultMessage.rawValue, for: self)
             } else {
                 guard let credits = Double(credits) else { return }
                 CourseService.shared.createCourse(code: code, name: name, credits: credits, grade: 0)

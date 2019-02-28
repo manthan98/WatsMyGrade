@@ -41,7 +41,7 @@ class NewTaskViewController: AddEditViewController {
         
         if let name = textFieldOne.text, let priority = textFieldTwo.text, let date = textFieldThree.text {
             if (name == "" || priority == "" || date == "") {
-                ErrorHandler.sendAlert(title: "Error", message: "Invalid or empty fields.", for: self)
+                ErrorHandler.sendAlert(title: ErrorStrings.defaultTitle.rawValue, message: ErrorStrings.defaultMessage.rawValue, for: self)
             } else {
                 TaskService.shared.createTask(name: name, priority: priority, date: date, course: course)
                 self.navigationController?.popViewController(animated: true)
